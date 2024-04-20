@@ -11,17 +11,17 @@ export default function Banner() {
   return (
     <div className="w-[100vw] h-[200vh] z-0 relative bg-white top-[65px]">
       <div className="w-[55vw] z-[1] h-[100vh] absolute right-0 bg-pink-400 opacity-25"/>
-      <div className="w-[55vw] z-0 h-[100vh] absolute right-0">
+      <div className="w-[55vw] z-0 h-[100vh] absolute right-0 select-none">
         <img className="w-full h-full object-cover" src="/img/scenic-road-trips.png"/>
       </div>
 
-      <div className="w-full z-[1] absolute">
+      <div className="w-full z-[1] absolute select-none">
         <img className="absolute right-0 mr-[309px] mt-[18px]" src="/img/crown.png" width={170}/>
-        <img className="absolute right-0 top-[20vh] rotate-[1.5deg] mr-[50px]" src="/img/sport-car.png" width={829}/>
+        <img className="absolute right-0 top-[20vh] rotate-[1.5deg] mr-[50px]" src="/img/sport-car.png" draggable={false} width={829}/>
       </div>
 
-      <div className="w-[45vw] h-[100vh] z-[0] left-0 absolute">
-        <img className="w-full h-full" src="/img/smoke.png"/>
+      <div className="w-[45vw] h-[100vh] z-[0] left-0 absolute select-none">
+        <img className="w-full h-full" src="/img/smoke.png" draggable={false}/>
       </div>
       
       <div className="w-[45vw] h-[100vh] absolute pl-[90px] z-[2]">
@@ -57,7 +57,7 @@ export default function Banner() {
           </span>
         </div>
 
-        <div className="bg-pink-500 shadow z-[50] w-[30%] h-[66px] mt-[33px] gap-4 cursor-pointer hover:scale-110 transition-transform flex items-center text-2xl justify-center rounded-lg text-white">
+        <div className="bg-pink-500 shadow w-[30%] select-none h-[66px] mt-[33px] gap-4 cursor-pointer hover:scale-110 transition-transform flex items-center text-2xl justify-center rounded-lg text-white">
           <ShoppingCartIcon/>
           Rent Now
         </div>
