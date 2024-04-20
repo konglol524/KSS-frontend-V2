@@ -63,7 +63,7 @@ export default function Banner() {
         </div>
       </div>
 
-      <div className="w-full h-[100vh] absolute flex items-end justify-center z-[5] -translate-y-[80px]">
+      <div className="top-1/2 right-1/2 absolute flex items-end justify-center z-[5] hover:scale-110 transition-transform -translate-y-[140px]">
         <img src="/img/arrow-down.png" className="object-contain animate-bounce" width={60}/>
       </div>
 
