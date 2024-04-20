@@ -3,31 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --animate-text-duration: 3s;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+
+* {
+    font-family:  monospace;
+    
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.dekbanjarnkim {
+    --bg-size: 400%;
+    --first-color: #FA4EAB;
+    --second-color: #ffd0ea;
+    background:  linear-gradient(90deg, var(--first-color), var(--second-color), var(--first-color)) 0 0 / var(--bg-size) 100%;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.animate-text-gradient {
+    -webkit-animation: animatedgradient var(--animate-text-duration) linear infinite;
+    -moz-animation: animatedgradient var(--animate-text-duration) linear infinite;
+    animation: animatedgradient var(--animate-text-duration) linear infinite;
 }
+  
+@keyframes animatedgradient {
+    to {
+        background-position: var(--bg-size) 0;
+    }
+}
+
+  
