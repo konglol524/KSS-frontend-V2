@@ -24,7 +24,7 @@ export default async function RootLayout({
       <body className='text-center'>
         <NextAuthProvider session={nextAuthSession}>
           <TopMenu/>
-          {children}          
+          {children}       
         </NextAuthProvider>
       </body>
     </html>
