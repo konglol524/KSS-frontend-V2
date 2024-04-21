@@ -12,6 +12,8 @@ import "swiper/css/pagination";
 
 import CarCard from "./CarCard";
 
+import "@/components/CarChooser.css";
+
 export default function CarChooser() {
   const cars = ["accord", "civic", "fortuner", "Lightning McQueen", "tesla"];
   const [swiperRef, setSwiperRef] = useState(null) as any;
@@ -46,20 +48,12 @@ export default function CarChooser() {
             width={0}
             height={0}
             sizes="100vw"
-            className="w-1/6 h-auto cursor-pointer rounded-lg"
+            className="w-1/6 h-auto cursor-pointer rounded-lg hover:opacity-50 transition-opacity duration-100 ease-in-out"
             draggable={false}
             onClick={() => swiperRef.slideTo(index)}
           />
         ))}
       </div>
-      <style>
-        {`
-          .swiper-button-next, .swiper-button-prev {
-            color: #FA4EAB;
-            margin: 0 17em;
-          }
-        `}
-      </style>
     </>
   );
 }
