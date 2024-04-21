@@ -29,7 +29,7 @@ export default function Banner() {
       </div>
 
       <div className="w-[45vw] h-[100vh] z-[0] left-0 absolute select-none">
-        <img className="w-full h-full" src="/img/smoke.png" draggable={false}/>
+        <img className="w-full h-full opacity-60" src="/img/smoke.png" draggable={false}/>
       </div>
       
       <div className="w-[45vw] h-[100vh] absolute pl-[120px] z-[2]">
