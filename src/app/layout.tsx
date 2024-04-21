@@ -20,7 +20,7 @@ export default async function RootLayout({
   const nextAuthSession = await getServerSession(authOptions);
   
   return (
-    <html lang="en">
+    <html lang="en" className=''>
       <body className='text-center'>
         <NextAuthProvider session={nextAuthSession}>
           <TopMenu/>

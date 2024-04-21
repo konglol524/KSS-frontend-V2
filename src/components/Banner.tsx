@@ -5,6 +5,14 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+import { Lily_Script_One } from 'next/font/google'
+
+const lilyScriptOne = Lily_Script_One({
+  weight: "400",
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 export default function Banner() {
   const { data: session } = useSession();
   // console.log('In Banner ' + JSON.stringify(session));
@@ -24,7 +32,7 @@ export default function Banner() {
         <img className="w-full h-full" src="/img/smoke.png" draggable={false}/>
       </div>
       
-      <div className="w-[45vw] h-[100vh] absolute pl-[90px] z-[2]">
+      <div className="w-[45vw] h-[100vh] absolute pl-[120px] z-[2]">
         <div className="text-pink-500 text-[4.2rem] z-[2] text-nowrap tracking-tighter font-bold text-left pt-[70px]">
           Start Your Journey Here
         </div>
@@ -67,40 +75,13 @@ export default function Banner() {
         <img src="/img/arrow-down.png" className="object-contain animate-bounce" width={60}/>
       </div>
 
-      <div className="w-[1010px] h-[481px] left-[1567px] top-[1403px] absolute">
-        <img
-          className="w-[323px] h-[420px] left-[72px] top-[48px] absolute shadow"
-          src="/img/Right_promotion.png"
-        />
-      </div>
-      <div className="w-[907px] h-[466px] left-[-548px] top-[1418px] absolute">
-        <img
-          className="w-[387px] h-[377px] left-[446px] top-[54px] absolute"
-          src="/img/left_promotion.png"
-        />
-      </div>
-
-      <div className="left-[79px] top-[1108px] absolute text-pink-500 text-9xl font-normal font-['Lily Script One']">
-        Promotion
-      </div>
-      <img
-        className="w-[923px] h-[469px] left-[488px] top-[1415px] absolute shadow"
-        src="/img/Rectangle_8.png"
-      />
-      <div className="w-6 h-6 left-[812px] top-[1635px] absolute justify-center items-center inline-flex" />
-      <div className="w-[289px] h-[289px] left-[1374px] top-[1499px] absolute justify-center items-center inline-flex" />
-      <div className="w-[289px] h-[289px] left-[271px] top-[1490px] absolute justify-center items-center inline-flex" />
-      <div className="w-[29px] h-[29px] left-[854px] top-[1953px] absolute bg-white rounded-full" />
-      <div className="w-[29px] h-[29px] left-[1017px] top-[1953px] absolute bg-white rounded-full" />
-      <div className="w-[29px] h-[29px] left-[964px] top-[1953px] absolute bg-white rounded-full" />
-      <div className="w-[29px] h-[29px] left-[909px] top-[1953px] absolute bg-pink-500 rounded-full" />
-      <div className="w-[219.78px] h-[200.73px] left-[1373.76px] top-[91px] absolute origin-top-left rotate-[20.95deg] justify-center items-center inline-flex" />
-      <div className="w-[292px] h-[88px] left-[804px] top-[1763px] absolute">
-        <div className="w-[292px] h-[88px] px-4 left-0 top-0 absolute bg-pink-500 bg-opacity-60 rounded-md shadow justify-center items-center gap-1 inline-flex">
-          <div className="text-white text-[32px] font-medium font-['Inter']">
-            Rent Now
-          </div>
+      <div className="absolute top-[100vh] z-[5] w-[100vw] h-[120px] bg-white shadow-md flex items-center">
+        <div className={`pl-[90px] text-pink-500 text-[4.2rem] ${lilyScriptOne.className}`}>
+          Promotion
         </div>
+      </div>
+      <div className="absolute top-[100vh] z-0 opacity-50">
+        <img src="/img/flower-background.png"/>
       </div>
     </div>
   );
