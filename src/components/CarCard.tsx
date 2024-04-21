@@ -12,7 +12,7 @@ export default function CarCard({ car }: { car: string }) {
         className="h-72 w-auto rounded-lg"
       />
       <h1 className="text-center font-semibold text-3xl">{car}</h1>
-      <button className="text-white text-center text-xl py-4 px-16 bg-[#FA4EAB] bg-opacity-60 rounded-md">
+      <button className="text-white text-center text-xl py-4 px-16 bg-[#FA4EAB] bg-opacity-60 rounded-md transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-opacity-80 duration-150">
         Select
       </button>
     </div>

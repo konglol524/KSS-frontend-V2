@@ -1,0 +1,35 @@
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fa4eab;
+  margin: 0 17em;
+  animation: bounce 1s infinite;
+  transform: scale(1.5);
+}
+.swiper-button-next {
+  animation: bounceNext 2s infinite;
+}
+.swiper-button-prev {
+  animation: bouncePrev 2s infinite;
+}
+@keyframes bounceNext {
+  0%,
+  100% {
+    transform: translateX(-50%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+@keyframes bouncePrev {
+  0%,
+  100% {
+    transform: translateX(50%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
