@@ -14,7 +14,7 @@ import CarCard from "./CarCard";
 
 export default function CarChooser() {
   const cars = ["accord", "civic", "fortuner", "Lightning McQueen", "tesla"];
-  const [swiperRef, setSwiperRef] = useState(null);
+  const [swiperRef, setSwiperRef] = useState(null) as any;
 
   const slides = cars.map((car, index) => (
     <SwiperSlide key={car} virtualIndex={index}>
@@ -56,7 +56,7 @@ export default function CarChooser() {
         {`
           .swiper-button-next, .swiper-button-prev {
             color: #FA4EAB;
-            margin: 0 5em;
+            margin: 0 17em;
           }
         `}
       </style>
