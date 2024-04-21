@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 
 import CarCard from "./CarCard";
 
-import "@/components/CarChooser.css";
+import "@/components/MySwiper.css";
 
 export default function CarChooser() {
   const cars = ["accord", "civic", "fortuner", "Lightning McQueen", "tesla"];

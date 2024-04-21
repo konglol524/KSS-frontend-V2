@@ -1,4 +1,5 @@
 import CarChooser from "@/components/CarChooser";
+import PromotionSlider from "@/components/PromotionSlider";
 
 export default function Cars() {
   return (

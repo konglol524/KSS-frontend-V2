@@ -14,8 +14,6 @@ const lilyScriptOne = Lily_Script_One({
 });
 
 export default function Banner() {
-  const { data: session } = useSession();
-  // console.log('In Banner ' + JSON.stringify(session));
   return (
     <div className="grid h-screen grid-cols-5">
       <div className="w-[45vw] h-[100vh] absolute pl-[120px] z-[2]">
@@ -50,7 +48,9 @@ export default function Banner() {
           </div>
           <div className="bg-pink-500 ml-[2rem] shadow w-[40%] select-none h-[66px] mt-[33px] gap-3 cursor-pointer hover:scale-110 transition-transform flex items-center text-2xl justify-center rounded-md text-white font-[600]">
             <ShoppingCartIcon />
-            Rent Now
+            <Link href={"/cars"} prefetch={true}>
+              Rent Now
+            </Link>
           </div>
         </div>
       </section>
@@ -74,13 +74,23 @@ export default function Banner() {
         </div>
       </section>
       <footer className="bottom-0 left-0 w-full absolute flex items-end justify-center z-[5]">
-        <Image
-          src="/img/arrow-down.png"
-          className="object-contain cursor-pointer animate-bounce"
-          width={60}
-          height={60}
-          alt="arrow down"
-        />
+        <Link
+          href={"#promotions"}
+          onClick={(e) => {
+            e.preventDefault();
+            document
+              .getElementById("promotions")
+              ?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          <Image
+            src="/img/arrow-down.png"
+            className="object-contain cursor-pointer animate-bounce"
+            width={60}
+            height={60}
+            alt="arrow down"
+          />
+        </Link>
       </footer>
     </div>
   );
