@@ -38,7 +38,7 @@ export default function TopMenu() {
           pageRef="/"
         />
       </div>
-      <div className="h-full w-[50%] absolute right-0 flex items-center justify-end mr-[140px] gap-14">
+      <div className="h-full w-[50%] absolute right-0 flex items-center justify-end mx-12 gap-14">
         <TopMenuItem
           customClasses="z-50 hover:scale-105"
           item={<img className="w-[35px] h-[35px]" src="/img/car-icon.png" />}
