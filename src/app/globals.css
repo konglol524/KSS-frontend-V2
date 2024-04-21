@@ -3,35 +3,38 @@
 @tailwind utilities;
 
 :root {
-    --animate-text-duration: 3s;
+  --animate-text-duration: 3s;
 }
 
-
 * {
-    font-family:  monospace;
-    
+  font-family: sans-serif;
 }
 
 .dekbanjarnkim {
-    --bg-size: 400%;
-    --first-color: #FA4EAB;
-    --second-color: #ffd0ea;
-    background:  linear-gradient(90deg, var(--first-color), var(--second-color), var(--first-color)) 0 0 / var(--bg-size) 100%;
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
+  --bg-size: 400%;
+  --first-color: #fa4eab;
+  --second-color: #ffd0ea;
+  background: linear-gradient(
+      90deg,
+      var(--first-color),
+      var(--second-color),
+      var(--first-color)
+    )
+    0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 .animate-text-gradient {
-    -webkit-animation: animatedgradient var(--animate-text-duration) linear infinite;
-    -moz-animation: animatedgradient var(--animate-text-duration) linear infinite;
-    animation: animatedgradient var(--animate-text-duration) linear infinite;
-}
-  
-@keyframes animatedgradient {
-    to {
-        background-position: var(--bg-size) 0;
-    }
+  -webkit-animation: animatedgradient var(--animate-text-duration) linear
+    infinite;
+  -moz-animation: animatedgradient var(--animate-text-duration) linear infinite;
+  animation: animatedgradient var(--animate-text-duration) linear infinite;
 }
 
-  
+@keyframes animatedgradient {
+  to {
+    background-position: var(--bg-size) 0;
+  }
+}
