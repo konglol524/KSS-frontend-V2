@@ -16,14 +16,13 @@ const lilyScriptOne = Lily_Script_One({
 export default function Banner() {
   return (
     <div className="grid h-screen grid-cols-5">
-      <div className="w-[45vw] h-[100vh] absolute pl-[120px] z-[2]">
-        <div className="text-pink-500 mt-[2rem] text-[4.2rem] z-[2] text-nowrap tracking-tighter font-bold text-left pt-[70px]">
-          Start Your Journey Here
-        </div>
-      </div>
-      <section className="col-span-2 flex justify-center items-center bg-[url(/img/smoke.png)] bg-cover bg-no-repeat">
+      <div className="w-[45vw] h-[100vh] absolute pl-[120px] z-[2]"></div>
+      <section className="col-span-2 flex justify-center items-start bg-[url(/img/smoke.png)] bg-cover bg-no-repeat">
         <div className="text-[1.3rem] text-left w-[85%] leading-6 z-[2]">
-          <div className="text-2xl text-center z-[2] mb-[2rem]">
+          <div className="text-2xl z-[2] mb-[2rem]">
+            <div className="text-pink-500 text-nowrap tracking-tighter font-bold text-start text-6xl mt-24 mb-16">
+              Start Your Journey Here
+            </div>
             <span className="font-sans font-bold text-black">with </span>
             <span className="font-sans font-extrabold dekbanjarnkim animate-text-gradient">
               DekBanJarnKim{" "}
@@ -32,7 +31,7 @@ export default function Banner() {
               car rental system
             </span>
           </div>
-          <div className="ml-[2rem]">
+          <div className="">
             <span className="font-sans text-black">Welcome to </span>
             <span className="font-sans font-extrabold dekbanjarnkim animate-text-gradient">
               DekBanJarnKim
@@ -46,9 +45,9 @@ export default function Banner() {
               confidence today.
             </span>
           </div>
-          <div className="bg-pink-500 ml-[2rem] shadow w-[40%] select-none h-[66px] mt-[33px] gap-3 cursor-pointer hover:scale-110 transition-transform flex items-center text-2xl justify-center rounded-md text-white font-[600]">
+          <div className="bg-pink-500 shadow w-[40%] select-none h-[66px] mt-[33px] gap-3 cursor-pointer hover:scale-110 transition-transform flex items-center text-2xl justify-center rounded-md text-white font-[600]">
             <ShoppingCartIcon />
-            <Link href={"/cars"} prefetch={true}>
+            <Link href={"/cars"} prefetch={true} draggable={false}>
               Rent Now
             </Link>
           </div>
@@ -61,10 +60,11 @@ export default function Banner() {
             src="/img/crown.png"
             width={170}
             height={170}
+            draggable={false}
             alt="crown"
           />
           <Image
-            className="absolute left-[35rem] top-[25vh] rotate-[1.5deg] mr-[50px]"
+            className="absolute right-[8vw] top-1/3 rotate-[1.5deg]"
             src="/img/sport-car.png"
             draggable={false}
             width={829}
@@ -86,6 +86,7 @@ export default function Banner() {
           <Image
             src="/img/arrow-down.png"
             className="object-contain cursor-pointer animate-bounce"
+            draggable={false}
             width={60}
             height={60}
             alt="arrow down"
