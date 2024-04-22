@@ -56,7 +56,7 @@ export default function Banner() {
         <div className="w-full z-[1]">
           <Image
             className="absolute right-[4vw] top-1/5 rotate-[1.5deg] w-[880px] 2xl:w-[1100px] h-auto"
-            src="/img/group 1038.png"
+            src="/img/Group 1038.png"
             draggable={false}
             width={0}
             height={0}
