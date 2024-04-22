@@ -1,4 +1,5 @@
 import ReservationForm from "@/components/ReservationForm"
+import getCars from "@/libs/getCars";
 
 export default function CarReservationPage () {
     return (
@@ -9,5 +10,13 @@ export default function CarReservationPage () {
 }
 
 export async function generateStaticParams() {
-    return [{cname: '001'}, {cname:'002'}, {cname:'003'}, {cname:'004'}]
+    const cars:{[key:string]: Car} = getCars(); 
+
+    const staticParamsArray:Array<{[cname:string]:string}> = [];
+
+    for(let cname in cars){
+        staticParamsArray.push({cname: cname});
+    }
+
+    return staticParamsArray;
 }
