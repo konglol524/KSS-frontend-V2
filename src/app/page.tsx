@@ -3,7 +3,7 @@ import PromotionSlider from "@/components/PromotionSlider";
 
 export default function Home() {
   return (
-    <main className="bg-white overflow-x-hidden overflow-y-clip">
+    <main className="bg-white">
       <Banner />
       <PromotionSlider />
     </main>
