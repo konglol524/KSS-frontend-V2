@@ -11,10 +11,10 @@ export default function PromotionBanner({ promotion }: { promotion: string }) {
   ];
 
   const foundPromotion = mockId.find(item => item.picture === `/promotions/${promotion}.jpg`);
-  const promotionId = foundPromotion?.id || ''; // Default to empty string if foundPromotion is undefined
+  const promotionId = foundPromotion?.id || ''; 
 
   return (
-    <div className="relative">
+    <div className="flex items-center justify-center">
       <Image
         src={`/promotions/${promotion}.jpg`}
         alt={promotion}
@@ -23,7 +23,7 @@ export default function PromotionBanner({ promotion }: { promotion: string }) {
         sizes="100vw"
         className="h-[400px] w-auto p-12"
       />
-      <div className="bg-[#fb7dc0] text-white text-nowrap py-2 px-8 rounded-lg absolute bottom-0 left-0 mb-8 ml-8">
+      <div className="bg-[#fb7dc0] text-white text-nowrap py-2 px-8 rounded-lg absolute mt-[200px]">
         <SavedSearchIcon />
         <Link href={`/promotion/${promotionId}`} prefetch={true} className="ml-2">
           Check Out

@@ -54,7 +54,7 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="bg-pink-100 col-span-3 bg-[url(/img/scenic-road-trips.png)]">
+      <section className="bg-pink-100 col-span-3 bg-[url(/img/scenic-road-trips.png)] bg-cover bg-no-repeat">
         <div className="w-full z-[1]">
           <Image
             className="ml-[25rem] mt-[4rem]"
