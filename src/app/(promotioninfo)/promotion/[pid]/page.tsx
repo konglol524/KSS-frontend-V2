@@ -5,9 +5,9 @@ import { feedback } from "interface";
 
 export default async function PromotionDetailPage({ params }: { params: { pid: string } }) {
     const mockPromotionRepo = [
-        { name: "Tanza Hot Sale", description: "Tanza Hot Sale description", picture:"/cars/accord.jpg", id: "66252030c9c59cdaa789d8e4" },
-        { name: "One Hit Sale", description: "One Hit Sale description", picture:"/cars/civic.jpg", id: "66252030c9c59cdaa789d8e5" },
-        { name: "Guadalupe Special Sale", description: "Guadalupe Special Sale description", picture:"/cars/tesla.jpg", id: "66252030c9c59cdaa789d8e6" }
+        { name: "Tanza Hot Sale", description: "Tanza Hot Sale description", picture:`/promotions/0.jpg` },
+        { name: "One Hit Sale", description: "One Hit Sale description", picture:`/promotions/1.jpg` },
+        { name: "Guadalupe Special Sale", description: "One Hit Sale description", picture:`/promotions/2.jpg` }
     ];
 
     const promotionDetail = await getPromotion(params.pid);
