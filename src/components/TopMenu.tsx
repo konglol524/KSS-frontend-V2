@@ -3,6 +3,7 @@ import TopMenuItem from "./TopMenuItem";
 import { useSession } from "next-auth/react";
 
 import { Lily_Script_One } from "next/font/google";
+import Image from "next/image";
 
 const lilyScriptOne = Lily_Script_One({
   weight: "400",
@@ -30,7 +31,7 @@ export default function TopMenu() {
           customClasses="z-50 hover:opacity-35 transition-opacity"
           item={
             <div
-              className={`pointer-events-none w-auto h-auto hover:opacity-50 ${lilyScriptOne.className}`}
+              className={`w-auto h-auto hover:opacity-50 ${lilyScriptOne.className}`}
             >
               DekBanJarnKim
             </div>
@@ -41,13 +42,29 @@ export default function TopMenu() {
       <div className="h-full w-[50%] absolute right-0 p-11 flex items-center justify-end mx-12 gap-14">
         <TopMenuItem
           customClasses="z-50 hover:scale-105"
-          item={<img className="w-[35px] h-[28px]" src="/img/car-icon.png" />}
+          item={
+            <Image
+              width={0}
+              height={0}
+              sizes="100vh"
+              alt="car-icon"
+              className="w-[35px] h-[28px]"
+              src="/img/car-icon.png"
+            />
+          }
           pageRef="/cars"
         />
         <TopMenuItem
           customClasses="z-50 hover:scale-105"
           item={
-            <img className="w-[35px] h-[35px]" src="/img/profile-icon.png" />
+            <Image
+              width={0}
+              height={0}
+              sizes="100vh"
+              alt="profile-icon"
+              className="w-[35px] h-[35px]"
+              src="/img/profile-icon.png"
+            />
           }
           pageRef="/user"
         />
