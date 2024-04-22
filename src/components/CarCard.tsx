@@ -1,6 +1,10 @@
+import getCars from "@/libs/getCars";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CarCard({ car }: { car: string }) {
+  const cars:{[key:string]: Car} = getCars();
+
   return (
     <div className="bg-white p-2 rounded-2xl shadow-2xl flex flex-col items-center justify-center gap-y-4">
       <Image
@@ -11,10 +15,12 @@ export default function CarCard({ car }: { car: string }) {
         sizes="100vw"
         className="h-72 w-auto rounded-lg"
       />
-      <h1 className="text-center font-semibold text-3xl">{car}</h1>
-      <button className="text-white text-center text-xl py-4 px-16 bg-[#FA4EAB] bg-opacity-60 rounded-md transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-opacity-80 duration-150">
-        Select
-      </button>
+      <h1 className="text-center font-semibold text-3xl">{cars[car].model}</h1>
+      <Link href={`/reservation/${car}`}>
+        <button className="text-white text-center text-xl py-4 px-16 bg-[#FA4EAB] bg-opacity-60 rounded-md transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-opacity-80 duration-150">
+          Select
+        </button>
+      </Link>
     </div>
   );
 }
