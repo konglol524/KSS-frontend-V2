@@ -64,7 +64,7 @@ export default function Banner() {
             alt="crown"
           />
           <Image
-            className="absolute right-[8vw] top-1/3 rotate-[1.5deg]"
+            className="absolute right-[8vw] rotate-[1.5deg]"
             src="/img/sport-car.png"
             draggable={false}
             width={829}

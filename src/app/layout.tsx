@@ -4,7 +4,6 @@ import TopMenu from "../components/TopMenu";
 import NextAuthProvider from "@/providers/NextAuthProvider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/auth";
-
 export const metadata: Metadata = {
   title: "Car Rental by DekBanJarnKim",
   description: "",
