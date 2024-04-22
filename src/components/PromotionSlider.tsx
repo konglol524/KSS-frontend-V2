@@ -19,7 +19,7 @@ const lilyScriptOne = Lily_Script_One({
 });
 
 export default function PromotionSlider() {
-  const slides = Array.from({ length: 6 }).map((_, index) => (
+  const slides = Array.from({ length: 3 }).map((_, index) => (
     <SwiperSlide key={index} virtualIndex={index}>
       <PromotionBanner promotion={index.toString()} />
     </SwiperSlide>

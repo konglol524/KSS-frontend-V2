@@ -34,4 +34,33 @@ interface rentalProvider {
   cost: number;
   tel: string;
 }
+export interface PromotionItem {
+  _id: string,
+  name: string,
+  picture: string,
+  description:string,
+  ratingSum:string
+}
+
+export interface PromotionJson {
+  success: boolean,
+  count: number,
+  pagination: Object,
+  data: PromotionItem[]
+}
+
+export interface feedback {
+  _id: string;
+  user: string;
+  promotion: string;
+  comment: string;
+  rating: number;
+}
+
+interface Promotion {
+  name: string;
+  img: string;
+  description:string;
+  ratingSum:number;
+}
 
