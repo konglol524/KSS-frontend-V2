@@ -15,9 +15,8 @@ const lilyScriptOne = Lily_Script_One({
 
 export default function Banner() {
   return (
-    <div className="grid h-screen grid-cols-5">
-      <div className="w-[45vw] h-[100vh] absolute pl-[120px] z-[2]"></div>
-      <section className="col-span-2 flex justify-center items-start bg-[url(/img/smoke.png)] bg-cover bg-no-repeat">
+    <div className="grid h-auto md:h-screen grid-cols-5">
+      <section className="col-span-2  flex justify-center items-start bg-[url(/img/smoke.png)] bg-cover bg-no-repeat">
         <div className="text-[1.3rem] text-left w-[85%] leading-6 z-[2]">
           <div className="text-2xl z-[2] mb-[2rem]">
             <div className="text-pink-500 text-nowrap tracking-tighter font-bold text-start text-6xl mt-24 mb-16">
@@ -56,24 +55,17 @@ export default function Banner() {
       <section className="bg-pink-100 col-span-3 bg-[url(/img/scenic-road-trips.png)] bg-cover bg-no-repeat">
         <div className="w-full z-[1]">
           <Image
-            className="ml-[25rem] mt-[4rem]"
-            src="/img/crown.png"
-            width={170}
-            height={170}
+            className="absolute right-[4vw] top-1/5 rotate-[1.5deg] w-[880px] 2xl:w-[1100px] h-auto"
+            src="/img/Group 1038.png"
             draggable={false}
-            alt="crown"
-          />
-          <Image
-            className="absolute right-[8vw] rotate-[1.5deg]"
-            src="/img/sport-car.png"
-            draggable={false}
-            width={829}
-            height={300}
+            width={0}
+            height={0}
+            sizes="100vh"
             alt="sport car"
           />
         </div>
       </section>
-      <footer className="bottom-0 left-0 w-full absolute flex items-end justify-center z-[5]">
+      <footer className="bottom-0 left-0 w-full absolute flex items-end justify-center z-[5] scroll-smooth">
         <Link
           href={"#promotions"}
           onClick={(e) => {
