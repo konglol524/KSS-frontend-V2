@@ -7,7 +7,7 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
     const mockPromotionRepo = [
         { name: "Tanza Hot Sale", description: "Tanza Hot Sale description", picture:`/promotions/0.jpg` },
         { name: "One Hit Sale", description: "One Hit Sale description", picture:`/promotions/1.jpg` },
-        { name: "Guadalupe Special Sale", description: "One Hit Sale description", picture:`/promotions/2.jpg` }
+        { name: "Guadalupe Special Sale", description: "Guadalupe Special Sale description", picture:`/promotions/2.jpg` }
     ];
 
     const promotionDetail = await getPromotion(params.pid);
@@ -19,7 +19,7 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
     const feedbackData = matchedPromotion ? await getFeedback(promotionDetail.data._id) : [];
 
     return (
-        <div className="flex justify-center h-screen bg-[#FFF2F9]">
+        <div className="flex justify-center h-screen bg-[#FFF2F9] ">
             <div className="relative mt-14">
                 <div className="w-[1268px] h-[578px] bg-pink-200 rounded-lg bg-flower ">
                     <div className="w-[742px] h-[480px] left-[35px] top-[49px] absolute rounded-[15px] justify-center items-center inline-flex">
