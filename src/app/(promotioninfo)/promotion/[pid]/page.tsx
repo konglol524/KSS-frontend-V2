@@ -3,6 +3,7 @@ import getPromotion from "@/libs/getPromotion";
 import getFeedback from "@/libs/getFeedback";
 import { feedback } from "interface";
 import Star from "@/components/Star"
+import getProfilePicturebyId from "@/libs/getProfilePicturebyId";
 
 export default async function PromotionDetailPage({ params }: { params: { pid: string } }) {
     const mockPromotionRepo = [
@@ -33,9 +34,24 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
                     </div>
                 </div>
                 <div className="mt-12">
-                    <div className="text-left text-black text-4xl font-normal font-['Lato']">Comments</div>
-                    <div className="mt-12 w-[60vw] bg-pink-200 bg-flower rounded-lg flex flex-row justify-center p-[49px] gap-10 shadow-[0_4px_4px_-0px_rgba(250,78,171,1)]"></div>
-                </div>
+                {feedbackData && (
+    <div>
+       {Promise.all(feedbackData.data.map(async (feedback: feedback) => {
+    const profilePicData = await getProfilePicturebyId(feedback.user);
+    const profilePic = profilePicData.data.profilePic || profilePicData.data ;
+    
+
+    return (
+        <div className="mt-4 w-[60vw] bg-pink-200 bg-flower rounded-lg flex flex-row  p-[49px] gap-10 shadow-[0_4px_4px_-0px_rgba(250,78,171,1)]" key={feedback._id}>
+            <img src={profilePic} alt="Profile" className="w-12 h-12 rounded-full" />
+            {/* {feedback.user} */}
+            {feedback.comment}
+        </div>
+    );
+}))}
+    </div>
+)}
+            </div>
         </div>
     );
 }
