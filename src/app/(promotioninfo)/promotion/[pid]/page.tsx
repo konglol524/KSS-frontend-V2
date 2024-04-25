@@ -21,10 +21,10 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
     const feedbackData = matchedPromotion ? await getFeedback(promotionDetail.data._id) : [];
 
     return (
-        <div className="flex flex-col items-center h-screen bg-[#FFF2F9]">
+        <div className="flex flex-col items-center h-auto bg-[#FFF2F9]">
                 <div className="mt-16 w-[60vw] bg-pink-200 bg-flower rounded-lg flex flex-row justify-center p-[49px] gap-10 shadow-[0_4px_4px_-0px_rgba(250,78,171,1)]">
-                    <div className="w-8/12 relative rounded-[15px] items-center">   
-                        <img className="" src={matchedPromotion ? matchedPromotion.picture : '/cars/fortuner.jpg'} alt="Promotion Image" />
+                    <div className="w-8/12 relative items-center">   
+                        <img className="rounded-lg" src={matchedPromotion ? matchedPromotion.picture : '/cars/fortuner.jpg'} alt="Promotion Image" />
                     </div>  
                     <div className="w-4/12 relative items-start text-left text-pretty break-words">
                         <span className="text-black text-4xl font-bold font-['Lato']">{promotionDetail.data.name}<br/></span>
@@ -33,25 +33,26 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
                     <Star stars={promotionDetail.data.ratingSum}/>
                     </div>
                 </div>
-                <div className="mt-12">
-                {feedbackData && (
-    <div>
-       {Promise.all(feedbackData.data.map(async (feedback: feedback) => {
-    const profilePicData = await getProfilePicturebyId(feedback.user);
-    const profilePic = profilePicData.data.profilePic || profilePicData.data ;
-    
-
-    return (
-        <div className="mt-4 w-[60vw] bg-pink-200 bg-flower rounded-lg flex flex-row  p-[49px] gap-10 shadow-[0_4px_4px_-0px_rgba(250,78,171,1)]" key={feedback._id}>
-            <img src={profilePic} alt="Profile" className="w-12 h-12 rounded-full" />
-            {/* {feedback.user} */}
-            {feedback.comment}
-        </div>
-    );
-}))}
-    </div>
-)}
-            </div>
+                <div className="w-[60vw] mt-12 text-left pl-[49px]">
+                    <span className="text-black text-4xl font-normal font-['Lato']">Comments</span>
+                </div>
+                <div className="mt-8 bg-pink-200 bg-flower w-[60vw] rounded-lg flex flex-col p-[49px] gap-10 shadow-[0_4px_4px_-0px_rgba(250,78,171,1)]">
+                    {feedbackData && (
+                            <div>
+                                {Promise.all(feedbackData.data.map(async (feedback: feedback) => {
+                                    const profilePicData = await getProfilePicturebyId(feedback.user);
+                                    const profilePic = profilePicData.data.profilePic || profilePicData.data ;
+                                    return (
+                                        <div className="bg-white w-auto rounded-lg mt-4 flex flex-row" key={feedback._id}>
+                                            <img src={profilePic} alt="Profile" className="w-12 h-12 rounded-full" />
+                                            {/* {feedback.user} */}
+                                            {feedback.comment}
+                                        </div>
+                                    );
+                                }))}
+                            </div>
+                    )}
+                </div>
         </div>
     );
 }
