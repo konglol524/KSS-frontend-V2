@@ -20,7 +20,7 @@ export default function TopMenu() {
     <div
       className={`w-[100vw] flex-nowrap flex h-[65px] items-center bg-white shadow justify-between fixed top-0 z-[100] transition-transform duration-900`}
     >
-      <div className="flex items-center justify-center w-14 h-14  py-2 absolute bg-pink-400 rounded-full ml-[80px] text-white text-[1rem] font-[500] z-50  hover:scale-105 cursor-pointer">
+      <div className="flex items-center justify-center w-14 h-14  py-2 absolute bg-pink-400 rounded-full ml-[80px] text-white text-[1rem] font-[500] z-50">
         <p className="flex flex-col items-center">
           <span>キム</span>
           <span>先生</span>
