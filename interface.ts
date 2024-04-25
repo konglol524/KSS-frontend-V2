@@ -52,6 +52,7 @@ export interface PromotionJson {
 export interface feedback {
   _id: string;
   user: string;
+  username: string;
   promotion: string;
   comment: string;
   rating: number;
