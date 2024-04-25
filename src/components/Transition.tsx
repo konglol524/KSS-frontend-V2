@@ -10,13 +10,15 @@ export default async function Transition({
   return (
     <AnimatePresence initial={true}>
       <motion.div
-        initial={{ x: 300, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        exit={{ x: 300, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 30, opacity: 0 }}
         transition={{
           type: "spring",
           stiffness: 260,
           damping: 20,
+          duration: 0.75,
+          delay: 0.5,
         }}
       >
         {children}

@@ -53,25 +53,15 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="bg-pink-100 col-span-3 bg-[url(/img/scenic-road-trips.png)] bg-cover bg-no-repeat">
-        <div className="w-full z-[1]">
-          <Image
-            className="ml-[25rem] mt-[4rem]"
-            src="/img/crown.png"
-            width={170}
-            height={170}
-            draggable={false}
-            alt="crown"
-          />
-          <Image
-            className="absolute right-[8vw] rotate-[1.5deg]"
-            src="/img/sport-car.png"
-            draggable={false}
-            width={829}
-            height={300}
-            alt="sport car"
-          />
-        </div>
+      <section className="bg-pink-100 col-span-3 bg-[url(/img/scenic-road-trips.png)] bg-cover bg-no-repeat flex items-center justify-start">
+        <Image
+          src="/img/homecar.png"
+          width={0}
+          height={0}
+          sizes="100vw"
+          alt="homecar"
+          className="w-full h-auto transition -translate-x-[8%] z-1"
+        />
       </section>
       <footer className="bottom-0 left-0 w-full absolute flex items-end justify-center z-[5]">
         <Link

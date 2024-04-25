@@ -24,16 +24,14 @@ export default function PromotionBanner({ promotion }: { promotion: string }) {
         sizes="100vw"
         className="h-[200px] sm:h-[280px] md:h-[350px] lg:h-[400px] w-auto p-12"
       />
-      <div className="bg-[#fb7dc0] text-white font-bold text-nowrap py-2 px-4 rounded-lg absolute mt-[50px] sm:mt-[100px] md:mt-[180px] lg:mt-[220px] md:py-4 md:px-8 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150">
+      <Link
+        href={`/promotion/${promotionId}`}
+        prefetch={true}
+        className="ml-2 bg-[#fb7dc0] text-white font-bold text-nowrap py-2 px-4 rounded-lg absolute mt-[50px] sm:mt-[100px] md:mt-[180px] lg:mt-[220px] md:py-4 md:px-8 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-150"
+      >
         <SavedSearchIcon />
-        <Link
-          href={`/promotion/${promotionId}`}
-          prefetch={true}
-          className="ml-2"
-        >
-          Check Out
-        </Link>
-      </div>
+        Check Out
+      </Link>
     </div>
   );
 }
