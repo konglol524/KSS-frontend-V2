@@ -1,9 +1,11 @@
 "use client";
 import TopMenuItem from "./TopMenuItem";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 import { Lily_Script_One } from "next/font/google";
 import Image from "next/image";
+
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const lilyScriptOne = Lily_Script_One({
   weight: "400",
@@ -40,6 +42,16 @@ export default function TopMenu() {
         />
       </div>
       <div className="h-full w-[50%] absolute right-0 p-11 flex items-center justify-end mx-12 gap-14">
+        {
+          session.data && <TopMenuItem 
+            item={
+              <div onClick={(e)=>signOut()}>
+                <LogoutIcon sx={{color: iconColor, fontSize: 45}}/>
+              </div>
+            }
+            pageRef="/"
+          />
+        }
         <TopMenuItem
           customClasses="z-50 hover:scale-105"
           item={
