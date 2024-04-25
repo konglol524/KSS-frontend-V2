@@ -1,7 +1,7 @@
 .swiper-button-next,
 .swiper-button-prev {
   color: #fa4eab;
-  margin: 0 4em;
+  margin: 0 10rem;
 }
 .swiper-button-next {
   animation: bounceNext 2s infinite;
