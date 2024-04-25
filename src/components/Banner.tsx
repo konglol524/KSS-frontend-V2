@@ -20,7 +20,7 @@ export default function Banner() {
       <section className="col-span-2 flex justify-center items-start bg-[url(/img/smoke.png)] bg-cover bg-no-repeat">
         <div className="text-[1.3rem] text-left w-[85%] leading-6 z-[2]">
           <div className="text-2xl z-[2] mb-[2rem]">
-            <div className="text-pink-500 text-nowrap tracking-tighter font-bold text-start text-6xl mt-24 mb-16">
+            <div className="mt-24 mb-16 text-6xl font-bold tracking-tighter text-pink-500 text-nowrap text-start">
               Start Your Journey Here
             </div>
             <span className="font-sans font-bold text-black">with </span>
@@ -53,7 +53,7 @@ export default function Banner() {
           </div>
         </div>
       </section>
-      <section className="bg-pink-100 col-span-3 bg-[url(/img/scenic-road-trips.png)] bg-cover bg-no-repeat flex items-center justify-start">
+      <section className="bg-pink-100 col-span-3 bg-[url(/img/bgscene.png)]  bg-cover bg-no-repeat flex items-center justify-start">
         <Image
           src="/img/homecar.png"
           width={0}
@@ -61,6 +61,7 @@ export default function Banner() {
           sizes="100vw"
           alt="homecar"
           className="w-full h-auto transition -translate-x-[8%] z-1"
+          draggable={false}
         />
       </section>
       <footer className="bottom-0 left-0 w-full absolute flex items-end justify-center z-[5]">
@@ -74,7 +75,7 @@ export default function Banner() {
           }}
         >
           <Image
-            src="/img/arrow-down.png"
+            src="/img/arrowdown2.png"
             className="object-contain cursor-pointer animate-bounce"
             draggable={false}
             width={60}

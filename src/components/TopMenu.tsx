@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import { Lily_Script_One } from "next/font/google";
 import Image from "next/image";
 
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const lilyScriptOne = Lily_Script_One({
   weight: "400",
@@ -23,7 +23,7 @@ export default function TopMenu() {
       className={`w-[100vw] flex-nowrap flex h-[65px] items-center bg-white shadow justify-between fixed top-0 z-[100] transition-transform duration-900`}
     >
       <div className="flex items-center justify-center w-14 h-14  py-2 absolute bg-pink-400 rounded-full ml-[80px] text-white text-[1rem] font-[500] z-50">
-        <p className="flex flex-col items-center">
+        <p className="flex flex-col items-center select-none hover:cursor-default">
           <span>キム</span>
           <span>先生</span>
         </p>
@@ -33,7 +33,7 @@ export default function TopMenu() {
           customClasses="z-50 hover:opacity-35 transition-opacity"
           item={
             <div
-              className={`w-auto h-auto hover:opacity-50 ${lilyScriptOne.className}`}
+              className={`select-none w-auto h-auto hover:opacity-50 ${lilyScriptOne.className}`}
             >
               DekBanJarnKim
             </div>
@@ -42,16 +42,16 @@ export default function TopMenu() {
         />
       </div>
       <div className="h-full w-[50%] absolute right-0 p-11 flex items-center justify-end mx-12 gap-14">
-        {
-          session.data && <TopMenuItem 
+        {session.data && (
+          <TopMenuItem
             item={
-              <div onClick={(e)=>signOut()}>
-                <LogoutIcon sx={{color: iconColor, fontSize: 45}}/>
+              <div onClick={(e) => signOut()}>
+                <LogoutIcon sx={{ color: iconColor, fontSize: 45 }} />
               </div>
             }
             pageRef="/"
           />
-        }
+        )}
         <TopMenuItem
           customClasses="z-50 hover:scale-105"
           item={
