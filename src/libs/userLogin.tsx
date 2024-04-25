@@ -4,7 +4,7 @@ export default async function userLogIn(userEmail:string, userPassword:string){
 
     const response = await axios({
         method: "POST",
-        url: `${process.env.BACKEND_URL}/api/v1/auth/login`, 
+        url: `${process.env.BACKEND_URL}/api/v1/auth/login`,
         data: JSON.stringify({
             email: userEmail,
             password: userPassword,
