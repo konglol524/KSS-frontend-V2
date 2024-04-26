@@ -89,7 +89,7 @@ export default  function ReservationForm({shops, user, bookingsAmount}:{shops:re
           daySpend > 0
         ) {
           const estimatedCost = currentCostPerDay * daySpend - discount * 10;
-    
+          alert("มาม่า")
           console.log(`${bookDate} ${selectedCar} ${selectedShop} ${daySpend}`);
     
           console.log("ADDING BOOKING");
