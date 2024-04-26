@@ -22,8 +22,8 @@ const FeedbackForm = ({ promoID, token }:{promoID:string,token:string}) => {
   };
 
   return (
-    <div className="flex flex-row">
-      <form onSubmit={handleSubmit} className="flex flex-col">
+    <form onSubmit={handleSubmit} className="flex flex-row">
+      <div className="flex flex-col flex-grow">
         <div className="relative">
           <textarea
             className="bg-white w-[50vw] rounded-lg mt-4 flex flex-row p-[25px] border border-gray-300"
@@ -41,9 +41,11 @@ const FeedbackForm = ({ promoID, token }:{promoID:string,token:string}) => {
             />
           </div>
         </div>
-      </form>
-      <button type="submit" className="bg-[#FA4EAB] rounded-lg shadow-xl py-3 text-xl text-white ml-4 self-center mt-3">Submit Feedback</button>
-    </div>
+      </div>
+      <button type="submit" className="bg-[#FA4EAB] rounded-lg shadow-xl py-3 text-xl text-white ml-4 self-center mt-4">Submit Feedback</button>
+    </form>
   );
+  
 };
+
 export default FeedbackForm;
