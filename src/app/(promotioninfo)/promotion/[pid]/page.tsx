@@ -2,7 +2,11 @@ import Image from "next/image";
 import getPromotion from "@/libs/getPromotion";
 import getFeedback from "@/libs/getFeedback";
 import Star from "@/components/Star"
+import { authOptions } from "@/libs/auth";
+import { getServerSession } from "next-auth";
+
 import getProfilePicturebyId from "@/libs/getProfilePicturebyId";
+import FeedbackForm from "@/components/FeedbackForm";
 
 export default async function PromotionDetailPage({ params }: { params: { pid: string } }) {
     const mockPromotionRepo = [
@@ -10,9 +14,10 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
         { name: "One Hit Sale", description: "One Hit Sale description", picture:`/promotions/1.jpg` },
         { name: "Guadalupe Special Sale", description: "Guadalupe Special Sale description", picture:`/promotions/2.jpg` }
     ];
-
+    
     const promotionDetail = await getPromotion(params.pid);
-
+    const session = await getServerSession(authOptions);
+    if(!session) return;
     // Find the promotion with the same name as the fetched promotion
     const matchedPromotion = mockPromotionRepo.find(promotion => promotion.name === promotionDetail.data.name);
     
@@ -59,6 +64,12 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
                                 }))}
                             </div>
                     )}
+                    <div>
+                        <FeedbackForm
+                        promoID={params.pid}
+                        token={session?.user.token}
+                        />
+                    </div>
                 </div>
         </div>
     );
