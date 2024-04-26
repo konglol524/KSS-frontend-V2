@@ -1,6 +1,7 @@
 import Image from "next/image";
 import getPromotion from "@/libs/getPromotion";
 import getFeedback from "@/libs/getFeedback";
+import { feedback } from "interface";
 import Star from "@/components/Star"
 import getProfilePicturebyId from "@/libs/getProfilePicturebyId";
 
