@@ -1,8 +1,9 @@
 'use client'
 import React, { useState } from "react";
 import addFeedback from "@/libs/addFeedback";
-import { Rating} from '@mui/material';
+import { Rating } from '@mui/material';
 import { useRouter } from "next/navigation";
+import TextField from '@mui/material/TextField';
 
 const FeedbackForm = ({ promoID, token }:{promoID:string,token:string}) => {
   const [comment, setComment] = useState("");
@@ -25,27 +26,33 @@ const FeedbackForm = ({ promoID, token }:{promoID:string,token:string}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-row">
-      <div className="flex flex-col flex-grow">
-        <div className="relative">
-          <textarea
-            className="bg-white w-[50vw] rounded-lg mt-4 flex flex-row p-[25px] border border-gray-300"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="Write your feedback..."
-          />
-          <div className="absolute bottom-0 right-0 mr-4 mb-4">
+    <form onSubmit={handleSubmit} className="flex flex-row w-[100%] h-[100%] ml-6">
+      <div className="w-[90%] h-[100%] text-left">
             <Rating
               name="simple-controlled"
               value={rating}
+              
+              precision={0.5}
               onChange={(event, newValue) => {
                 setRating(newValue);
               }}
             />
-          </div>
-        </div>
+            <TextField
+              className="bg-white w-[100%] border border-gray-300"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="Write your feedback..."
+              id="standard-basic" variant="standard" fullWidth  
+              inputProps={{
+                style: {
+                  padding: 0
+                }
+            }}
+            />
       </div>
-      <button type="submit" className="bg-[#FA4EAB] rounded-lg shadow-xl py-3 text-xl text-white ml-4 self-center mt-4">Submit Feedback</button>
+          <div className="w-[10%] justify-center items-center">
+            <button type="submit" className="bg-[#FA4EAB] w-[90%] h-[100%] rounded-lg shadow-xl text-center text-sm text-white">POST</button>
+          </div>
     </form>
   );
   
