@@ -204,7 +204,7 @@ export default function ReservationForm({
   return (
     <>
       {selectedCar ? (
-        <div className="grid grid-cols-2 gap-x-4 px-4">
+        <div className="grid grid-cols-2 gap-x-4 p-4">
           <div className="flex justify-center items-center">
             <Image
               className="w-full rounded-xl"
@@ -215,301 +215,265 @@ export default function ReservationForm({
               sizes="100vw"
             />
           </div>
-          <div className="flex items-start">
-            <div className="bg-[#FFF2F9] overflow-y-scroll max-h-[90vh] w-4/5 rounded-[30px] flex flex-1 flex-col p-4 gap-y-4">
-              {/* name + 3icon */}
-              <div className="flex gap-x-2">
-                <div className=" flex flex-col mt-2 items-start w-[30%]">
-                  <p className="font-sans text-5xl text-black text-left font-extrabold pl-3 pt-2 overflow-hidden">
-                    {firstname}{" "}
+          <div className="flex flex-col bg-[#FFF2F9] overflow-y-scroll max-h-[90vh] w-full rounded-2xl p-4 px-6 gap-y-6">
+            {/* name + 3icon */}
+            <div className="flex gap-x-2">
+              <div className=" flex flex-col mt-2 items-start w-[30%]">
+                <p className="font-sans text-5xl text-black text-left font-extrabold pt-2">
+                  {firstname}{" "}
+                </p>
+                <p className="font-sans text-3xl text-black text-left font-medium pl-1">
+                  {lastname}{" "}
+                </p>
+              </div>
+              <div className="flex justify-between w-[70%] mx-16">
+                <div className="flex flex-col items-center mt-2  w-[30%] h-full pt-5">
+                  <div className="w-auto">
+                    <Image
+                      src={"/bookingIcon/miter.png"}
+                      alt={"miter"}
+                      width={25}
+                      height={25}
+                    />
+                  </div>
+                  <p className="font-sans text-sm font-semibold ">
+                    {selectedCar.TopSpeed}
                   </p>
-                  <p className="font-sans text-3xl text-black text-left font-medium pl-3 overflow-hidden">
-                    {lastname}{" "}
-                  </p>
+                  <p className="font-sans text-xs font-medium">Top Speed</p>
                 </div>
-                <div className="flex justify-between w-[70%] mx-16">
-                  <div className="flex flex-col items-center mt-2  w-[30%] h-full pt-5">
-                    <div className="w-auto">
-                      <Image
-                        src={"/bookingIcon/miter.png"}
-                        alt={"miter"}
-                        width={25}
-                        height={25}
-                      />
-                    </div>
-                    <p className="font-sans text-sm font-semibold ">
-                      {selectedCar.TopSpeed}
-                    </p>
-                    <p className="font-sans text-xs font-medium">Top Speed</p>
+                <div className="flex flex-col items-center mt-2 w-[30%] h-full pt-4">
+                  <div className="w-auto">
+                    <Image
+                      src={"/bookingIcon/housepower.png"}
+                      alt={"housepower"}
+                      width={24}
+                      height={24}
+                    />
                   </div>
-                  <div className="flex flex-col items-center mt-2 w-[30%] h-full pt-4">
-                    <div className="w-auto">
-                      <Image
-                        src={"/bookingIcon/housepower.png"}
-                        alt={"housepower"}
-                        width={24}
-                        height={24}
-                      />
-                    </div>
-                    <p className="font-sans text-sm font-semibold">
-                      {selectedCar.Horsepower}
-                    </p>
-                    <p className="font-sans text-xs font-medium">Horsepower</p>
+                  <p className="font-sans text-sm font-semibold">
+                    {selectedCar.Horsepower}
+                  </p>
+                  <p className="font-sans text-xs font-medium">Horsepower</p>
+                </div>
+                <div className="flex flex-col items-center mt-2  w-[30%] h-full pt-5">
+                  <div className="w-auto">
+                    <Image
+                      src={"/bookingIcon/road.png"}
+                      alt={"road"}
+                      width={25}
+                      height={25}
+                    />
                   </div>
-                  <div className="flex flex-col items-center mt-2  w-[30%] h-full pt-5">
-                    <div className="w-auto">
-                      <Image
-                        src={"/bookingIcon/road.png"}
-                        alt={"road"}
-                        width={25}
-                        height={25}
-                      />
-                    </div>
-                    <p className="font-sans text-sm font-semibold">
-                      {selectedCar.MPH}
-                    </p>
-                    <p className="font-sans text-xs font-medium">0-60MPH</p>
-                  </div>
+                  <p className="font-sans text-sm font-semibold">
+                    {selectedCar.MPH}
+                  </p>
+                  <p className="font-sans text-xs font-medium">0-60MPH</p>
                 </div>
               </div>
-              {/* <div className=" bg-white col-span-6 ml-4 mr-4 mt-5 row-span-2">
-                            
-                            
-                            </div> */}
-              {/* detail */}
-              <div className="flex flex-row flex-wrap w-full justify-start gap-2 pl-2">
-                <div className="w-[30%] h-[50%] rounded-md bg-white pl-2 flex flex-col justify-center py-3">
-                  <div className="flex">
-                    <Image
-                      src={"/bookingIcon/user.png"}
-                      alt={"road"}
-                      width={20}
-                      height={16}
-                    />
-                    <label className="font-sans text-xs mt-1 ml-2" htmlFor="m1">
-                      Passengers
-                    </label>
-                  </div>
-                  <p className="flex font-sans font-semibold text-xs mt-1">
-                    {selectedCar.Passengers}
-                  </p>
-                </div>
-                <div className="w-[30%] h-[50%] rounded-md bg-white pl-2 flex flex-col justify-center py-3">
-                  <div className="flex">
-                    <Image
-                      src={"/bookingIcon/caricon.png"}
-                      alt={"road"}
-                      width={20}
-                      height={16}
-                    />
-                    <label className="font-sans text-xs mt-1 ml-2" htmlFor="m1">
-                      Type
-                    </label>
-                  </div>
-                  <p className="flex font-sans font-semibold text-xs mt-1">
-                    {selectedCar.Type}
-                  </p>
-                </div>
-                <div className="w-[30%] h-[50%] rounded-md bg-white pl-2 flex flex-col justify-center py-3">
-                  <div className="flex">
-                    <Image
-                      src={"/bookingIcon/gas.png"}
-                      alt={"road"}
-                      width={20}
-                      height={16}
-                    />
-                    <label
-                      className="font-sans  text-xs mt-1 ml-2"
-                      htmlFor="m1"
-                    >
-                      Fuel
-                    </label>
-                  </div>
-                  <p className="flex font-sans font-semibold text-xs mt-1">
-                    {selectedCar.Fuel}
-                  </p>
-                </div>
-                <div className="w-[30%] h-[50%] rounded-md bg-white pl-2 flex flex-col justify-center py-3">
-                  <div className="flex">
-                    <Image
-                      src={"/bookingIcon/gear.png"}
-                      alt={"road"}
-                      width={21}
-                      height={17}
-                    />
-                    <label
-                      className="font-sans  text-xs mt-1 ml-2"
-                      htmlFor="m1"
-                    >
-                      Type
-                    </label>
-                  </div>
-                  <p className="flex font-sans font-semibold text-xs mt-1">
-                    {selectedCar.Transmission}
-                  </p>
-                </div>
-              </div>
-
-              {/* -mb-6 */}
-              <div className="flex flex-col p-4 rounded-md bg-[#fdfdfb]  col-span-6  gap-y-2  row-span-2">
-                <div className=" flex flex-col items items-center h-[20%] gap-y-1 mb-3">
-                  <label
-                    className="font-semibold text-xs font-sans text-[#FA4EAB] pt-1 h-4 text-left w-full"
-                    htmlFor="input1"
-                  >
-                    Date
-                  </label>
-                  <div className="w-full h-full border-[#FA4EAB] rounded border-2">
-                    <DateReserve
-                      day={bookDate}
-                      onDateChange={(value: Dayjs) => setBookDate(value)}
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col pl-0 h-[25%]">
-                  <label
-                    className="font-semibold text-xs font-sans text-[#FA4EAB] pt-1 h-4 text-left"
-                    htmlFor="input1"
-                  >
-                    Duration
-                  </label>
-                  <input
-                    min={1}
-                    value={daySpend}
-                    type="number"
-                    className="border-[#FA4EAB] border-2 w-[100%]  text-center bg-white  rounded h-[3.5em] mt-2  text-black"
-                    onChange={(e) => setDaySpend(parseInt(e.target.value))}
+            </div>
+            {/* detail */}
+            <div className="grid grid-cols-3 w-full justify-start gap-2">
+              <div className="rounded-md bg-white pl-2 flex flex-col justify-center py-3">
+                <div className="flex">
+                  <Image
+                    src={"/bookingIcon/user.png"}
+                    alt={"road"}
+                    width={20}
+                    height={16}
                   />
-                </div>
-                <div className="flex flex-col pl-0 gap-1  h-[25%]">
-                  <label
-                    className="font-semibold text-xs font-sans text-[#FA4EAB] pt-1 h-4 text-left"
-                    htmlFor="input1"
-                  >
-                    Rental Provider
+                  <label className="font-sans text-xs mt-1 ml-2" htmlFor="m1">
+                    Passengers
                   </label>
-                  <div className="w-full h-full border-[#FA4EAB] rounded border-2">
-                    <ShopSelect
-                      value={selectedShop}
-                      shops={shops}
-                      onShopChange={(value: string) => setSelectedShop(value)}
-                    />
-                  </div>
                 </div>
-                <div className="flex flex-col pl-0  h-[25%]">
-                  <label
-                    className="font-semibold text-xs font-sans text-[#FA4EAB] pt-1 h-4 text-left"
-                    htmlFor="input1"
-                  >
-                    Point Usage
+                <p className="flex font-sans font-semibold text-xs mt-1">
+                  {selectedCar.Passengers}
+                </p>
+              </div>
+              <div className="rounded-md bg-white pl-2 flex flex-col justify-center py-3">
+                <div className="flex">
+                  <Image
+                    src={"/bookingIcon/caricon.png"}
+                    alt={"road"}
+                    width={20}
+                    height={16}
+                  />
+                  <label className="font-sans text-xs mt-1 ml-2" htmlFor="m1">
+                    Type
                   </label>
-                  <input
-                    value={discount}
-                    min={0}
-                    max={maxDiscount}
-                    type="number"
-                    id="discount"
-                    className="border-[#FA4EAB] border-2 w-[100%] text-center bg-white rounded  h-[3em] mt-2 text-black "
-                    onChange={(e) => {
-                      if (+e.target.value < 0 || +e.target.value > maxDiscount)
-                        // if (+e.target.value < 0 || +e.target.value > 10)
-                        return;
-                      setDiscount(parseInt(e.target.value));
-                    }}
+                </div>
+                <p className="flex font-sans font-semibold text-xs mt-1">
+                  {selectedCar.Type}
+                </p>
+              </div>
+              <div className="rounded-md bg-white pl-2 flex flex-col justify-center py-3">
+                <div className="flex">
+                  <Image
+                    src={"/bookingIcon/gas.png"}
+                    alt={"road"}
+                    width={20}
+                    height={16}
+                  />
+                  <label className="font-sans  text-xs mt-1 ml-2" htmlFor="m1">
+                    Fuel
+                  </label>
+                </div>
+                <p className="flex font-sans font-semibold text-xs mt-1">
+                  {selectedCar.Fuel}
+                </p>
+              </div>
+              <div className="rounded-md bg-white pl-2 flex flex-col justify-center py-3">
+                <div className="flex">
+                  <Image
+                    src={"/bookingIcon/gear.png"}
+                    alt={"road"}
+                    width={21}
+                    height={17}
+                  />
+                  <label className="font-sans  text-xs mt-1 ml-2" htmlFor="m1">
+                    Type
+                  </label>
+                </div>
+                <p className="flex font-sans font-semibold text-xs mt-1">
+                  {selectedCar.Transmission}
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col p-4 rounded-md bg-[#fdfdfb] gap-y-2 ">
+              <div className="flex flex-col gap-y-2">
+                <label
+                  className="font-semibold text-xs font-sans text-[#FA4EAB] text-left w-full"
+                  htmlFor="input1"
+                >
+                  Date
+                </label>
+                <div className="border-[#FA4EAB] rounded border-2">
+                  <DateReserve
+                    day={bookDate}
+                    onDateChange={(value: Dayjs) => setBookDate(value)}
                   />
                 </div>
               </div>
-              <div className="col-span-6 row-span-2 p-2">
-                <div className="h-14 text-center w-full relative items-start flex justify-start border-transparent border-b-[#FA4EAB] border-2 flex-wrap">
+              <div className="flex flex-col gap-y-2">
+                <label
+                  className="font-semibold text-xs font-sans text-[#FA4EAB] text-left"
+                  htmlFor="input1"
+                >
+                  Duration
+                </label>
+                <input
+                  min={1}
+                  value={daySpend}
+                  type="number"
+                  className="border-[#FA4EAB] border-2 text-center bg-white rounded text-black py-4"
+                  onChange={(e) => setDaySpend(parseInt(e.target.value))}
+                />
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <label
+                  className="font-semibold text-xs font-sans text-[#FA4EAB] text-left"
+                  htmlFor="input1"
+                >
+                  Rental Provider
+                </label>
+                <div className="border-[#FA4EAB] rounded border-2">
+                  <ShopSelect
+                    value={selectedShop}
+                    shops={shops}
+                    onShopChange={(value: string) => setSelectedShop(value)}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <label
+                  className="font-semibold text-xs font-sans text-[#FA4EAB] text-left"
+                  htmlFor="input1"
+                >
+                  Point Usage
+                </label>
+                <input
+                  value={discount}
+                  min={0}
+                  max={maxDiscount}
+                  type="number"
+                  id="discount"
+                  className="border-[#FA4EAB] border-2 text-center bg-white rounded text-black py-4"
+                  onChange={(e) => {
+                    if (+e.target.value < 0 || +e.target.value > maxDiscount)
+                      // if (+e.target.value < 0 || +e.target.value > 10)
+                      return;
+                    setDiscount(parseInt(e.target.value));
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-y-4">
+              <div className="flex justify-between items-center">
+                <div className="flex">
                   <p className="font-sans text-3xl text-[#FA4EAB]">{`$${currentCostPerDay}`}</p>
                   <p className="font-sans text-3xl">/day</p>
-                  <div className=" flex flex-row absolute right-20">
-                    <p className="pt-2 ">{daySpend}</p>
-                    <p className="pt-2">&nbsp;day</p>
-                  </div>
                 </div>
-                <div className=" mt-5 h-28 relative">
-                  <div className="flex flex-row justify-between">
-                    <p className="font-sans text-2xl pl-0 mt- text-[#060606]">
-                      Total
-                    </p>
-                    <div className="text-xl text-center w-full items-center flex justify-end mr-20 rounded-md h-[1.75em]">
-                      <span
-                        className={`${
-                          discount > 0 ? "line-through" : ""
-                        } text-gray-500 mr-2`}
-                      >
-                        $ {(currentCostPerDay * daySpend).toLocaleString()}
-                      </span>
-                      {discount > 0 && (
-                        <span className="text-[#FA4EAB] font-bold">
-                          {Math.max(
-                            0,
-                            currentCostPerDay * daySpend - discount * 10
-                          ).toLocaleString() + " "}
-                          Baht
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex flex-col absolute mt-5 left-3">
-                    <li className="font-sans text-left text-sm text-[#FA4EAB]">
-                      using 10 points discount
-                    </li>
-                    <li className="font-sans text-left text-sm text-[#FA4EAB]">
-                      Promotion discount
-                    </li>
-                  </div>
-                </div>
-                <div className=" relative mt-0 h-28 ">
-                  <div className="flex flex-row justify-between">
-                    <span className="font-sans text-xl justify-self-auto pl-0  text-[#060606]">
-                      Point&nbsp;Earn
-                    </span>
-                    <div className="text-xl text-center w-full items-start flex justify-end mr-20 rounded-md h-[1.75em]">
-                      <span className="text-[#FA4EAB] font-bold">
-                        {` ${
-                          discount > 0
-                            ? 0
-                            : Math.floor((currentCostPerDay * daySpend) / 100)
-                        } `}
-                        {discount > 0 ? "point" : "points"}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col absolute mt-5  left-3">
-                    <p className="font-sans text-sm text-left text-[#FA4EAB]">
-                      *Points are calculated based on the original cost divided
-                      by 100.
-                    </p>
-                    <p className=" font-sans text-left text-sm text-[#FA4EAB]">
-                      *You cannot earn any points when you use points to
-                      discount.
-                    </p>
-                  </div>
+                <p>{daySpend} Days</p>
+              </div>
+              <div className="border-2 border-pink-400 w-full rounded-xl"></div>
+              <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center w-full">
+                  <p className="font-sans text-2xl text-[#060606]">Total</p>
+                  <span
+                    className={`text-xl ${
+                      discount > 0 ? "line-through" : ""
+                    } text-gray-500`}
+                  >
+                    $ {(currentCostPerDay * daySpend).toLocaleString()}
+                  </span>
                 </div>
               </div>
+              <div className="flex flex-col px-2">
+                <li className="font-sans text-left text-sm text-[#FA4EAB]">
+                  using 10 points discount
+                </li>
+                <li className="font-sans text-left text-sm text-[#FA4EAB]">
+                  Promotion discount
+                </li>
+              </div>
+              <div className="flex flex-row w-full justify-between">
+                <span className="font-sans text-xl justify-self-auto pl-0  text-[#060606]">
+                  Point&nbsp;Earn
+                </span>
+                <span className="text-[#FA4EAB] font-bold text-xl">
+                  {` ${
+                    discount > 0
+                      ? 0
+                      : Math.floor((currentCostPerDay * daySpend) / 100)
+                  } `}
+                  {discount > 0 ? "point" : "points"}
+                </span>
+              </div>
+              <div className="flex flex-col px-2">
+                <p className="font-sans text-sm text-left text-[#FA4EAB]">
+                  <span className="font-bold text-pink-500 text-xl">*</span>
+                  Points are calculated based on the original cost divided by
+                  100.
+                </p>
+                <p className=" font-sans text-left text-sm text-[#FA4EAB]">
+                  <span className="font-bold text-pink-500 text-xl">*</span>You
+                  cannot earn any points when you use points to discount.
+                </p>
+              </div>
+            </div>
 
-              <div className="flex flex-row justify-around my-2">
-                <button
-                  onClick={clearData}
-                  className=" bg-white text-black rounded-lg shadow-xl py-2 px-4 font-sans text-3xl"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={submitReservation}
-                  className="bg-[#FA4EAB] rounded-lg shadow-xl py-2 px-4 font-sans text-3xl text-white"
-                >
-                  Rent
-                </button>
-              </div>
-              {/* <div className=" bg-[#10e917] col-span-2 col-start-2 ">
-                                <button className="font-sans text-xl">Cancel</button>
-                            </div>
-                            <div className=" bg-[#10e917] col-span-2 col-start-4 ">
-                                <button className="font-sans text-xl" >Rent</button>
-                            </div> */}
+            <div className="flex flex-row justify-around mb-4">
+              <button
+                onClick={clearData}
+                className=" bg-white text-black rounded-lg shadow-xl py-2 px-4 font-sans text-3xl"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={submitReservation}
+                className="bg-[#FA4EAB] rounded-lg shadow-xl py-2 px-4 font-sans text-3xl text-white"
+              >
+                Rent
+              </button>
             </div>
           </div>
         </div>
