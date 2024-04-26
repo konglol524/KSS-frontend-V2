@@ -12,15 +12,17 @@ import "swiper/css/pagination";
 
 import CarCard from "./CarCard";
 
+import getCars from "@/libs/getCars";
+
 import "@/components/MySwiper.css";
 
 export default function CarChooser() {
-  const cars = ["accord", "civic", "fortuner", "Lightning McQueen", "tesla"];
+  const cars:{[key:string]:Car} = getCars();
   const [swiperRef, setSwiperRef] = useState(null) as any;
 
-  const slides = cars.map((car, index) => (
-    <SwiperSlide key={car} virtualIndex={index}>
-      <CarCard car={car} />
+  const slides = Object.keys(cars).map((key, index) => (
+    <SwiperSlide key={key} virtualIndex={index}>
+      <CarCard car={cars[key]} carkey={key} />
     </SwiperSlide>
   ));
 
@@ -40,7 +42,7 @@ export default function CarChooser() {
         <br />
       </Swiper>
       <div className="w-full flex flex-wrap items-center justify-center gap-4 p-4 bg-white rounded-lg">
-        {cars.map((car, index) => (
+        {Object.keys(cars).map((car, index) => (
           <Image
             key={car}
             src={`/cars/${car}.jpg`}
