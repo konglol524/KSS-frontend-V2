@@ -2,6 +2,13 @@ interface Car {
   model: string;
   img: string;
   description:string;
+  TopSpeed:string;
+  Horsepower:string;
+  MPH:string;
+  Passengers:string;
+  Type:string;
+  Fuel:string
+  Transmission:string;
 }
 
 interface Bookings {
