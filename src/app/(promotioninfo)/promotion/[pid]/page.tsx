@@ -19,6 +19,7 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
 
     const feedbackData = matchedPromotion ? await getFeedback(promotionDetail.data._id) : [];
 
+    const rating = Math.round((promotionDetail.data.ratingSum/promotionDetail.data.ratingCount)*2)/2   ;
     return (
         <div className="flex flex-col items-center h-auto bg-[#FFF2F9]">
                 <div className="mt-16 w-[60vw] bg-pink-200 bg-flower rounded-lg flex flex-row justify-center p-[49px] gap-10 shadow-[0_4px_4px_-0px_rgba(250,78,171,1)]">
@@ -28,8 +29,8 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
                     <div className="w-4/12 relative items-start text-left text-pretty break-words">
                         <span className="text-black text-4xl font-bold font-['Lato']">{promotionDetail.data.name}<br/></span>
                         <div className="text-black text-2xl font-normal font-['Lato']">{matchedPromotion ? matchedPromotion.description : "No description available"} </div>
-                    <div className="mt-24 text-black text-2xl font-normal font-['Lato']">Rating: {promotionDetail.data.ratingSum}</div>
-                    <Star stars={promotionDetail.data.ratingSum}/>
+                        <div className="mt-24 text-black text-2xl font-normal font-['Lato']">Rating: {rating}</div>
+                            <Star stars={rating} fontsize="xxx-large"/>
                     </div>
                 </div>
                 <div className="w-[60vw] mt-12 text-left pl-[49px]">
@@ -46,8 +47,8 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
                                             <Image src={profilePic} alt="Profile" className="w-12 h-12 rounded-full mt-4 " width={0} height={0} draggable={false} />
                                             {/* {feedback.user} */}
                                             <div className="text-left ml-6">
-                                                <div className="text-xl">{feedback.username}</div>
-                                                <Star stars={feedback.rating}/>
+                                                <div className="text-lg text-black font-semibold">{feedback.username}</div>
+                                                <Star stars={feedback.rating} fontsize="sm"/>
                                                 <div className="text-bas text-wrap break-all">
                                                     {feedback.comment}
                                                 </div>
