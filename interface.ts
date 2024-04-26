@@ -41,7 +41,7 @@ interface rentalProvider {
   cost: number;
   tel: string;
 }
-export interface PromotionItem {
+interface PromotionItem {
   _id: string,
   name: string,
   picture: string,
@@ -49,14 +49,14 @@ export interface PromotionItem {
   ratingSum:string
 }
 
-export interface PromotionJson {
+interface PromotionJson {
   success: boolean,
   count: number,
   pagination: Object,
   data: PromotionItem[]
 }
 
-export interface feedback {
+interface feedback {
   _id: string;
   user: string;
   username: string;
