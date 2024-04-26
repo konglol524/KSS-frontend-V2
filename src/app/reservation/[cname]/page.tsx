@@ -11,11 +11,11 @@ export default async function CarReservationPage () {
     const session = await getServerSession(authOptions);
 
     if(!session) return;
-    const bookings:Bookings = await getBookings(session?.user.token);
+    const bookings:Bookings = await getBookings(session.user.token);
     
     return (
         <div>
-            <ReservationForm shops={shops} user={session?.user} bookingsAmount={bookings.count}/>
+            <ReservationForm shops={shops} user={session.user} bookingsAmount={bookings.count}/>
         </div>
     );
 }

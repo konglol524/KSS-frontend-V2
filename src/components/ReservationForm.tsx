@@ -46,23 +46,22 @@ export default  function ReservationForm({shops, user, bookingsAmount}:{shops:re
         }
     }, [])
 
-    useEffect(() => {
-        const fetchUserProfile = async () => {
-          try {
-            const updatedUser = await getUserProfile(user.token); 
-            setNewUser(updatedUser);
-            setIsLoading(!isLoading);
-          } catch (error) {
-            console.error("Error fetching user profile:", error);
-          }
-        };
+    // useEffect(() => {
+    //     const fetchUserProfile = async () => {
+    //       try {
+    //         const updatedUser = await getUserProfile(user.token); 
+    //         setNewUser(updatedUser);
+    //         setIsLoading(!isLoading);
+    //       } catch (error) {
+    //         console.error("Error fetching user profile:", error);
+    //       }
+    //     };
     
-        fetchUserProfile();
-      }, [isLoading]);
+    //     fetchUserProfile();
+    //   }, [isLoading]);
 
       const maxDiscount = Math.ceil(Math.min(
-        // user.data.point
-        10, 
+        newUser.data.point, 
         (currentCostPerDay * daySpend) / 10
       )) ;
 
@@ -75,11 +74,13 @@ export default  function ReservationForm({shops, user, bookingsAmount}:{shops:re
 
 
       const submitReservation = async () => {
-        if (user.data.role !== "admin" && bookingsAmount >= 3) {
+        
+        if (newUser.data.role !== "admin" && bookingsAmount >= 3) {
           handleSubmitResponse({
             success: false,
             text: "Maximum 3 bookings per user",
           });
+          console.log("Maximum 3 bookings per user");
         } else if (
           bookDate != null &&
           selectedCar.model != "" &&
@@ -89,7 +90,7 @@ export default  function ReservationForm({shops, user, bookingsAmount}:{shops:re
           daySpend > 0
         ) {
           const estimatedCost = currentCostPerDay * daySpend - discount * 10;
-          alert("มาม่า")
+          
           console.log(`${bookDate} ${selectedCar} ${selectedShop} ${daySpend}`);
     
           console.log("ADDING BOOKING");
@@ -114,10 +115,11 @@ export default  function ReservationForm({shops, user, bookingsAmount}:{shops:re
           try {
             const updatedUser = await getUserProfile(user.token);
             setNewUser(updatedUser);
+            console.log(updatedUser);
           } catch (error) {
             console.error("Error fetching user profile:", error);
           }
-    
+          
           
           setTimeout(() => {
             handleSubmitResponse({
@@ -324,14 +326,13 @@ export default  function ReservationForm({shops, user, bookingsAmount}:{shops:re
                                         <input
                                             value={discount}
                                             min={0}
-                                            // max={maxDiscount}
-                                            max={10}
+                                             max={maxDiscount}
                                             type="number"
                                             id="discount"
                                             className="border-[#FA4EAB] border-2 w-[100%] text-center bg-white rounded  h-[3em] mt-2 text-black "
                                             onChange={(e) => {
-                                                // if (+e.target.value < 0 || +e.target.value > maxDiscount)
-                                                    if (+e.target.value < 0 || +e.target.value > 10)
+                                                if (+e.target.value < 0 || +e.target.value > maxDiscount)
+                                                    // if (+e.target.value < 0 || +e.target.value > 10)
                                                 return;
                                                 setDiscount(parseInt(e.target.value));
                                             }}
@@ -361,7 +362,7 @@ export default  function ReservationForm({shops, user, bookingsAmount}:{shops:re
                                                                 discount > 0 ? "line-through" : ""
                                                                 } text-gray-500 mr-2`}
                                                             >
-                                                                {(currentCostPerDay * daySpend).toLocaleString()} Baht
+                                                               $ {(currentCostPerDay * daySpend).toLocaleString()}
                                                             </span>
                                                             {discount > 0 && (
                                                                 <span className="text-[#FA4EAB] font-bold">
