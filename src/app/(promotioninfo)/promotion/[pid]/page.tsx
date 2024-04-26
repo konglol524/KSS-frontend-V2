@@ -24,7 +24,10 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
     // Reverse the order of feedbackData array
     feedbackData.data.reverse();
 
-    const rating = Math.round((promotionDetail.data.ratingSum/promotionDetail.data.ratingCount)*2)/2   ;
+    const ratingCount = promotionDetail.data.ratingCount;
+const ratingSum = promotionDetail.data.ratingSum;
+const rating = ratingCount !== 0 ? Math.round((ratingSum / ratingCount) * 2) / 2 : 0;
+
     
     return (
         <div className="flex flex-col items-center h-auto bg-[#FFF2F9]">
