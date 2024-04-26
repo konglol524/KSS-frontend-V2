@@ -91,7 +91,7 @@ export default function TopMenu() {
           />
           <ul
             tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+            className="dropdown-content z-[1] p-2 menu shadow bg-base-100 w-20"
           >
             <li>
               <TopMenuItem
@@ -102,7 +102,7 @@ export default function TopMenu() {
                     height={0}
                     sizes="100vh"
                     alt="car-icon"
-                    className="w-[35px] h-[28px]"
+                    className="w-8 h-8"
                     src="/img/car-icon.png"
                   />
                 }
@@ -118,7 +118,7 @@ export default function TopMenu() {
                     height={0}
                     sizes="100vh"
                     alt="profile-icon"
-                    className="w-[35px] h-[35px]"
+                    className="w-8 h-8"
                     src="/img/profile-icon.png"
                   />
                 }
