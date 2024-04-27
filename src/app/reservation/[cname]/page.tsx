@@ -5,13 +5,15 @@ import { authOptions } from "@/libs/auth";
 import { getServerSession } from "next-auth";
 import getBookings from "@/libs/getBookings";
 import getUserProfile from "@/libs/getUserProfile";
+import { redirect } from "next/navigation";
 
 export default async function CarReservationPage() {
-  const shops: rentals = await getRentals();
-
   const session = await getServerSession(authOptions);
 
-  if (!session) return;
+  if (!session) redirect("/");
+
+  const shops: rentals = await getRentals();
+
   const bookings: Bookings = await getBookings(session.user.token);
 
   const user = await getUserProfile(session.user.token);
