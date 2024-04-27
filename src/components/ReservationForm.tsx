@@ -346,20 +346,6 @@ export default function ReservationForm({
                   }}
                 />
               </div>
-              {selectedShop === "None" ? null : (
-                  <div className="flex flex-col gap-y-2">
-                    <label
-                      className="font-semibold text-xs font-sans text-[#FA4EAB] text-left w-full"
-                      htmlFor="input1"
-                    >
-                      Promotion
-                    </label>
-                    <DatePicker
-                      day={bookDate}
-                      onDateChange={(value: Dayjs) => setBookDate(value)}
-                    />
-                  </div>
-              )}
             </div>
             <div className="flex flex-col gap-y-4">
               <div className="flex justify-between items-center">
