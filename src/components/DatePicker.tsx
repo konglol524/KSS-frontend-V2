@@ -40,6 +40,7 @@ export function DatePicker({
           selected={day}
           onSelect={(value) => onDateChange(value)}
           initialFocus
+          fromDate={new Date()}
         />
       </PopoverContent>
     </Popover>

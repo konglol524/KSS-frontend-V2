@@ -67,7 +67,7 @@ export default function ReservationForm({
   };
 
   const submitReservation = async () => {
-    if (newUser.data.role !== "admin" && bookingsAmount >= 3) {
+    if (newUser.data.role !== "admin" && bookingsAmount >= 999) {
       handleSubmitResponse({
         success: false,
         text: "Maximum 3 bookings per user",
@@ -332,14 +332,12 @@ export default function ReservationForm({
                 >
                   Date
                 </label>
-                <DatePicker
-                  day={bookDate}
-                  onDateChange={(value: Dayjs) => setBookDate(value)}
-                />
-                {/* <DateReserve
+                <span data-cy="date">
+                  <DatePicker
                     day={bookDate}
                     onDateChange={(value: Dayjs) => setBookDate(value)}
-                  /> */}
+                  />
+                </span>
               </div>
               <div className="flex flex-col gap-y-2">
                 <label
@@ -349,6 +347,7 @@ export default function ReservationForm({
                   Duration
                 </label>
                 <Input
+                  data-cy="daySpend"
                   min={1}
                   value={daySpend}
                   type="number"
@@ -366,18 +365,27 @@ export default function ReservationForm({
                 >
                   Rental Provider
                 </label>
-                <ShopSelect
-                  shops={shops}
-                  onShopChange={(value: string) => setSelectedShop(value)}
-                />
+                <span data-cy="shopSelect">
+                  <ShopSelect
+                    shops={shops}
+                    onShopChange={(value: string) => setSelectedShop(value)}
+                  />
+                </span>
               </div>
               <div className="flex flex-col gap-y-2">
-                <label
-                  className="font-semibold text-xs font-sans text-[#FA4EAB] text-left"
-                  htmlFor="input1"
-                >
-                  Point Usage
-                </label>
+                <div className="flex justify-between">
+                  <label
+                    className="font-semibold text-xs font-sans text-[#FA4EAB] text-left"
+                    htmlFor="input1"
+                  >
+                    Point Usage
+                  </label>
+                  <label className="font-semibold text-xs font-sans text-[#FA4EAB] text-left">
+                    Your Current Point:{" "}
+                    <span data-cy="point">{newUser.data.point}</span>
+                  </label>
+                </div>
+
                 <Input
                   value={discount}
                   min={0}
@@ -419,7 +427,10 @@ export default function ReservationForm({
                       $ {(currentCostPerDay * daySpend).toLocaleString()}
                     </span>
                     {discount > 0 && (
-                      <span className="text-[#FA4EAB] text-xl font-bold">
+                      <span
+                        className="text-[#FA4EAB] text-xl font-bold"
+                        data-cy="decreasedCost"
+                      >
                         $
                         {Math.max(
                           0,
