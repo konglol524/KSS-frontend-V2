@@ -35,7 +35,6 @@ export default function ReservationForm({
   const [selectedShop, setSelectedShop] = useState<string>("None");
   const [discount, setDiscount] = useState<number>(0);
   const [newUser, setNewUser] = useState<any>(user);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const currentCostPerDay =
     shops.data.find((rental: rentalProvider) => rental._id === selectedShop)
@@ -54,20 +53,6 @@ export default function ReservationForm({
       clearTimeout(redirectTimeout);
     };
   }, []);
-
-  // useEffect(() => {
-  //     const fetchUserProfile = async () => {
-  //       try {
-  //         const updatedUser = await getUserProfile(user.token);
-  //         setNewUser(updatedUser);
-  //         setIsLoading(!isLoading);
-  //       } catch (error) {
-  //         console.error("Error fetching user profile:", error);
-  //       }
-  //     };
-
-  //     fetchUserProfile();
-  //   }, [isLoading]);
 
   const maxDiscount = Math.ceil(
     Math.min(newUser.data.point, (currentCostPerDay * daySpend) / 10)
@@ -418,18 +403,29 @@ export default function ReservationForm({
               <div className="flex justify-between items-center">
                 <div className="flex justify-between items-center w-full">
                   <p className="font-sans text-2xl text-[#060606]">Total</p>
-                  <span
-                    className={`text-xl ${
-                      discount > 0 ? "line-through" : ""
-                    } text-gray-500`}
-                  >
-                    $ {(currentCostPerDay * daySpend).toLocaleString()}
-                  </span>
+                  <div className="flex items-center gap-x-2">
+                    <span
+                      className={`text-xl ${
+                        discount > 0 ? "line-through" : ""
+                      } text-gray-500`}
+                    >
+                      $ {(currentCostPerDay * daySpend).toLocaleString()}
+                    </span>
+                    {discount > 0 && (
+                      <span className="text-[#FA4EAB] text-xl font-bold">
+                        $
+                        {Math.max(
+                          0,
+                          currentCostPerDay * daySpend - discount * 10
+                        ).toLocaleString() + " "}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col px-2">
                 <li className="font-sans text-left text-sm text-[#FA4EAB]">
-                  using 10 points discount
+                  using {discount} points discount
                 </li>
                 <li className="font-sans text-left text-sm text-[#FA4EAB]">
                   Promotion discount
