@@ -446,7 +446,7 @@ export default function ReservationForm({
                     >
                       $ {(currentCostPerDay * daySpend ).toLocaleString()}
                     </span>
-                    {(discount > 0 || promotype) > 0 && (
+                    {(discount > 0 || promotype) && (
                       <span
                         className="text-[#FA4EAB] text-xl font-bold"
                         data-cy="decreasedCost"
