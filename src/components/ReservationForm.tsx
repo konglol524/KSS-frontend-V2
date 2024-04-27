@@ -12,6 +12,9 @@ import { DatePicker } from "./DatePicker";
 import { Input } from "./TextInput";
 import setOperationResult from "@/libs/setOperationResult";
 import OperationResult from "./OperationResult";
+import getRental from "@/libs/getRental";
+import PromotionSelect from "./PromotionSelect";
+
 export default function ReservationForm({
   shops,
   user,
@@ -21,6 +24,7 @@ export default function ReservationForm({
   user: any;
   bookingsAmount: number;
 }) {
+  console.log(shops);
   const router = useRouter();
   const params = useParams<{ cname: string }>();
 
@@ -38,7 +42,11 @@ export default function ReservationForm({
   const [selectedShop, setSelectedShop] = useState<string>("None");
   const [discount, setDiscount] = useState<number>(0);
   const [newUser, setNewUser] = useState<any>(user);
-
+  // const [promoDo, setPromoDo] = useState<string>("");
+  const [promovalue, setpromovalue] = useState<number>(0);
+  const [promotype, setpromotype] = useState<string | null>(null);
+  const [totalcouse, settotalcouse] = useState<number>(0);
+  
   const currentCostPerDay =
     shops.data.find((rental: rentalProvider) => rental._id === selectedShop)
       ?.cost || 0;
@@ -57,6 +65,17 @@ export default function ReservationForm({
     };
   }, []);
 
+  useEffect(() => {
+    let total = currentCostPerDay * daySpend;
+    total -= discount*10;
+    if(promotype === "simple"){
+      total -= promovalue;
+    }else if(promotype === "percent"){
+      total *= (100-promovalue)/100;
+    }
+    settotalcouse(total);
+  }, [discount,promovalue,promotype,selectedShop,daySpend]);
+
   const maxDiscount = Math.ceil(
     Math.min(newUser.data.point, (currentCostPerDay * daySpend) / 10)
   );
@@ -64,8 +83,13 @@ export default function ReservationForm({
   const clearData = () => {
     setBookDate(null);
     setDaySpend(1);
-    setSelectedShop("None");
     setDiscount(0);
+    setpromotype(null);
+    setpromovalue(0);
+  };
+
+  const findPromo = async ()=>{
+    return await getRental(selectedShop);
   };
 
   const submitReservation = async () => {
@@ -113,6 +137,8 @@ export default function ReservationForm({
       } catch (error) {
         console.error("Error fetching user profile:", error);
       }
+
+      clearData();
 
       setTimeout(() => {
         setOperationResult(resultChildren, setResultChildren, {
@@ -314,12 +340,17 @@ export default function ReservationForm({
                 >
                   Rental Provider
                 </label>
-                <span data-cy="shopSelect">
-                  <ShopSelect
-                    shops={shops}
-                    onShopChange={(value: string) => setSelectedShop(value)}
-                  />
-                </span>
+
+        <span data-cy="shopSelect">
+                <ShopSelect
+                  shops={shops}
+                  onShopChange={(value: string) => {
+                    setSelectedShop(value)
+                    setpromotype(null);
+                  }}
+                />
+        </span>
+                
               </div>
               <div className="flex flex-col gap-y-2">
                 <div className="flex justify-between">
@@ -354,6 +385,46 @@ export default function ReservationForm({
                   }}
                 />
               </div>
+              {selectedShop === "None" ? null : (
+                  <div className="flex flex-col gap-y-2">
+                    <label
+                      className="font-semibold text-xs font-sans text-[#FA4EAB] text-left w-full"
+                      htmlFor="input1"
+                    >
+                      Promotion
+                    </label>
+                    {/* <Input
+                  value={discount}
+                  min={0}
+                  max={maxDiscount}
+                  type="number"
+                  id="discount"
+                  className="text-start bg-white rounded text-black"
+                  onChange={(e) => {
+                    if (
+                      +e.target.value < 0 ||
+                      +e.target.value > maxDiscount ||
+                      !e.target.value
+                    )
+                      // if (+e.target.value < 0 || +e.target.value > 10)
+                      return;
+                    setDiscount(parseInt(e.target.value));
+                  }}
+                /> */}
+                    <PromotionSelect
+                      shops={shops}
+                      id={selectedShop}
+                      forPomoDo={(value: string) => {
+                        const [a,b] = value.split(" "); 
+                        console.log(a + " " + b);
+                        setpromovalue(parseInt(a));
+                        setpromotype(b);
+                      }}
+                      // setPromoDo(value);
+                    />
+                  </div>
+                  
+              )}
             </div>
             <div className="flex flex-col gap-y-4">
               <div className="flex justify-between items-center">
@@ -370,21 +441,18 @@ export default function ReservationForm({
                   <div className="flex items-center gap-x-2">
                     <span
                       className={`text-xl ${
-                        discount > 0 ? "line-through" : ""
+                        (discount > 0 || promotype) ? "line-through" : ""
                       } text-gray-500`}
                     >
-                      $ {(currentCostPerDay * daySpend).toLocaleString()}
+                      $ {(currentCostPerDay * daySpend ).toLocaleString()}
                     </span>
-                    {discount > 0 && (
+                    {(discount > 0 || promotype) && (
                       <span
                         className="text-[#FA4EAB] text-xl font-bold"
                         data-cy="decreasedCost"
                       >
                         $
-                        {Math.max(
-                          0,
-                          currentCostPerDay * daySpend - discount * 10
-                        ).toLocaleString() + " "}
+                        {totalcouse}
                       </span>
                     )}
                   </div>
@@ -395,7 +463,11 @@ export default function ReservationForm({
                   using {discount} points discount
                 </li>
                 <li className="font-sans text-left text-sm text-[#FA4EAB]">
-                  Promotion discount
+                  Promotion discount &nbsp;
+                  <span className="font-bold">
+                  {promotype && (promotype === "percent" ? promovalue + "%" : "$" + promovalue)}
+                  </span>
+                  
                 </li>
               </div>
               <div className="flex flex-row w-full justify-between">
