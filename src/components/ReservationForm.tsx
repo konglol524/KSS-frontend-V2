@@ -8,7 +8,8 @@ import { Dayjs } from "dayjs";
 import ShopSelect from "./ShopSelect";
 import getUserProfile from "@/libs/getUserProfile";
 import addBooking from "@/libs/addBooking";
-
+import { DatePicker } from "./DatePicker";
+import { Input } from "./TextInput";
 export default function ReservationForm({
   shops,
   user,
@@ -331,12 +332,14 @@ export default function ReservationForm({
                 >
                   Date
                 </label>
-                <div className="border-[#FA4EAB] rounded border-2">
-                  <DateReserve
+                <DatePicker
+                  day={bookDate}
+                  onDateChange={(value: Dayjs) => setBookDate(value)}
+                />
+                {/* <DateReserve
                     day={bookDate}
                     onDateChange={(value: Dayjs) => setBookDate(value)}
-                  />
-                </div>
+                  /> */}
               </div>
               <div className="flex flex-col gap-y-2">
                 <label
@@ -345,12 +348,15 @@ export default function ReservationForm({
                 >
                   Duration
                 </label>
-                <input
+                <Input
                   min={1}
                   value={daySpend}
                   type="number"
-                  className="border-[#FA4EAB] border-2 text-center bg-white rounded text-black py-4"
-                  onChange={(e) => setDaySpend(parseInt(e.target.value))}
+                  className="text-start bg-white rounded text-black"
+                  onChange={(e) => {
+                    if (!e.target.value) return;
+                    setDaySpend(parseInt(e.target.value));
+                  }}
                 />
               </div>
               <div className="flex flex-col gap-y-2">
@@ -360,13 +366,10 @@ export default function ReservationForm({
                 >
                   Rental Provider
                 </label>
-                <div className="border-[#FA4EAB] rounded border-2">
-                  <ShopSelect
-                    value={selectedShop}
-                    shops={shops}
-                    onShopChange={(value: string) => setSelectedShop(value)}
-                  />
-                </div>
+                <ShopSelect
+                  shops={shops}
+                  onShopChange={(value: string) => setSelectedShop(value)}
+                />
               </div>
               <div className="flex flex-col gap-y-2">
                 <label
@@ -375,15 +378,19 @@ export default function ReservationForm({
                 >
                   Point Usage
                 </label>
-                <input
+                <Input
                   value={discount}
                   min={0}
                   max={maxDiscount}
                   type="number"
                   id="discount"
-                  className="border-[#FA4EAB] border-2 text-center bg-white rounded text-black py-4"
+                  className="text-start bg-white rounded text-black"
                   onChange={(e) => {
-                    if (+e.target.value < 0 || +e.target.value > maxDiscount)
+                    if (
+                      +e.target.value < 0 ||
+                      +e.target.value > maxDiscount ||
+                      !e.target.value
+                    )
                       // if (+e.target.value < 0 || +e.target.value > 10)
                       return;
                     setDiscount(parseInt(e.target.value));

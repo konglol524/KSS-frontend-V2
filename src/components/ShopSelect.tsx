@@ -1,17 +1,30 @@
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-export default function ShopSelect({value, shops, onShopChange}:{value:any, shops:rentals, onShopChange:Function}) {
-    return (
-        <div>
-            <Select id="shopSelect" value={value} name="shop" className="w-[100%] border-[#FA4EAB] scale-y-[100%] text-black" data-theme="light"
-            onChange={(e:SelectChangeEvent)=>{onShopChange(e.target.value);}}>
-                <MenuItem value='None' disabled>None</MenuItem>
-                {
-                    shops.data.map((shopItem:rentalProvider)=>(
-                        <MenuItem value={shopItem._id} key={shopItem._id}>{shopItem.name}</MenuItem>
-                    ))
-                }
-            </Select>
-        </div>
-    )
+export default function ShopSelect({
+  shops,
+  onShopChange,
+}: {
+  shops: rentals;
+  onShopChange: Function;
+}) {
+  return (
+    <Select onValueChange={(value) => onShopChange(value)}>
+      <SelectTrigger className="w-full border-2 border-pink-400">
+        <SelectValue placeholder="Select Provider" />
+      </SelectTrigger>
+      <SelectContent>
+        {shops.data.map((shop: rentalProvider) => (
+          <SelectItem key={shop._id} value={shop._id}>
+            {shop.name}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
 }
