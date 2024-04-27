@@ -38,3 +38,8 @@
     background-position: var(--bg-size) 0;
   }
 }
+
+#cut-circle {
+  stroke-dasharray: 110;
+  stroke-dashoffset: 0;
+}
