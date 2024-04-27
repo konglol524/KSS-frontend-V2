@@ -93,13 +93,14 @@ export default function ReservationForm({
   };
 
   const submitReservation = async () => {
-    if (newUser.data.role !== "admin" && bookingsAmount >= 3) {
-      setOperationResult(resultChildren, setResultChildren, {
-        success: false,
-        text: "Maximum 3 bookings per user",
-      });
-      console.log("Maximum 3 bookings per user");
-    } else if (
+    // if (newUser.data.role !== "admin" && bookingsAmount >= 3) {
+    //   setOperationResult(resultChildren, setResultChildren, {
+    //     success: false,
+    //     text: "Maximum 3 bookings per user",
+    //   });
+    //   console.log("Maximum 3 bookings per user");
+    // } else 
+    if (
       bookDate != null &&
       selectedCar.model != "" &&
       selectedShop != "" &&
