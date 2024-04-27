@@ -1,21 +1,28 @@
 import axios from "axios";
 
 export default async function userSignUp(formData: Object) {
-  const response = await axios({
-    method: "POST",
-    url: `${process.env.BACKEND_URL}/api/v1/auth/register`,
-    data: JSON.stringify(formData),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  let response;
 
-  if (!(response.status >= 200 && response.status < 300)) {
-    console.log(response.status);
-    throw new Error("Failed to login");
+  try {
+    response = await axios({
+      method: "POST",
+      url: `${process.env.BACKEND_URL}/api/v1/auth/register`,
+      data: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!(response.status >= 200 && response.status < 300)) {
+      console.log(response.status);
+      throw "Failed to register";
+    }
+    console.log(response.data);
+    return response.data;
+  } catch(error) {
+    console.error("error:", error);
+    throw "Please recheck your input and try again.";
   }
-  console.log(response.data);
-  return response.data;
 }
 
 //test account

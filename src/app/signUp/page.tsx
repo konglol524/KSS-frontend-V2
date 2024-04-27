@@ -5,16 +5,20 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import setOperationResult from "@/libs/setOperationResult";
+import OperationResult from "@/components/OperationResult";
 
 const RegistrationForm = () => {
   const router = useRouter();
-  const [isFill, setIsFill] = useState(true);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     telephone: "",
   });
+
+  const [resultChildren, setResultChildren] = useState<Array<OperationResult>>([]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -31,18 +35,35 @@ const RegistrationForm = () => {
       !formData.password ||
       !formData.telephone
     ) {
-      setIsFill(false);
+      setOperationResult(resultChildren, setResultChildren, {
+        success: false,
+        text: "Please fill in all the fields.",
+      });
       return;
     }
 
     try {
       const response = await userSignUp(formData);
       console.log("Registration successful:", response);
-      router.push("/");
+
+      //alert("Registration Successful!");
+
+      setOperationResult(resultChildren, setResultChildren, {
+        success: true,
+        text: "",
+      });
+      
       router.refresh();
-      alert("Registration Successful!");
+
+      setTimeout(()=>{
+        router.push('/');
+      }, 1500)
     } catch (error) {
       console.error("Registration failed:", error);
+      setOperationResult(resultChildren, setResultChildren, {
+        success: false,
+        text: "" + error,
+      });
     }
   };
 
@@ -151,17 +172,13 @@ const RegistrationForm = () => {
           </div>
         </form>
       </div>
-      {!isFill && (
-        <div
-          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded fixed top-28 right-5"
-          role="alert"
-        >
-          <strong className="font-bold">Warning:</strong>
-          <span className="block sm:inline">
-            Please fill in all information!
-          </span>
-        </div>
-      )}
+      <div className="h-screen w-1/2 flex flex-col items-end fixed right-0 top-0 mt-[100px] pointer-events-none">
+        {
+          resultChildren.map((obj) => (
+            <OperationResult obj={obj} heading={obj.props.valid ? "Your registration was successful." : "Registration Failed:"}/>
+          ))
+        }
+      </div>
     </div>
   );
 };

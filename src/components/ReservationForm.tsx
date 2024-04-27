@@ -10,6 +10,8 @@ import getUserProfile from "@/libs/getUserProfile";
 import addBooking from "@/libs/addBooking";
 import { DatePicker } from "./DatePicker";
 import { Input } from "./TextInput";
+import setOperationResult from "@/libs/setOperationResult";
+import OperationResult from "./OperationResult";
 export default function ReservationForm({
   shops,
   user,
@@ -67,8 +69,8 @@ export default function ReservationForm({
   };
 
   const submitReservation = async () => {
-    if (newUser.data.role !== "admin" && bookingsAmount >= 999) {
-      handleSubmitResponse({
+    if (newUser.data.role !== "admin" && bookingsAmount >= 3) {
+      setOperationResult(resultChildren, setResultChildren, {
         success: false,
         text: "Maximum 3 bookings per user",
       });
@@ -99,7 +101,7 @@ export default function ReservationForm({
         cost: estimatedCost,
       });
 
-      handleSubmitResponse({
+      setOperationResult(resultChildren, setResultChildren, {
         ...responseData,
         text: "Created reservation successfully",
       });
@@ -113,7 +115,7 @@ export default function ReservationForm({
       }
 
       setTimeout(() => {
-        handleSubmitResponse({
+        setOperationResult(resultChildren, setResultChildren, {
           success: true,
           text: `You received ${
             discount > 0
@@ -123,69 +125,14 @@ export default function ReservationForm({
         });
       }, 3000);
     } else {
-      handleSubmitResponse({
+      setOperationResult(resultChildren, setResultChildren, {
         success: false,
         text: "Failed to create reservation",
       });
     }
   };
 
-  const [responseChildren, setResponseChildren] = useState<
-    Array<{
-      key: number;
-      isVisible: boolean;
-      props: { valid: boolean; text: string };
-    }>
-  >([]);
-
-  const handleSubmitResponse = (responseData: any) => {
-    let result,
-      key = responseChildren.length;
-
-    if (responseData.success == true) {
-      result = {
-        key: key,
-        isVisible: false,
-        props: { valid: true, text: responseData.text },
-      };
-    } else {
-      result = {
-        key: key,
-        isVisible: false,
-        props: { valid: false, text: responseData.text },
-      };
-    }
-
-    setResponseChildren([...responseChildren, result]);
-
-    setTimeout(() => {
-      setResponseChildren((prevChildren) => {
-        return prevChildren.map((obj) => {
-          if (obj.key == key) {
-            return { ...obj, isVisible: true };
-          } else return obj;
-        });
-      });
-    }, 500);
-
-    setTimeout(() => {
-      setResponseChildren((prevChildren) => {
-        return prevChildren.map((obj) => {
-          if (obj.key == key) {
-            return { ...obj, isVisible: false };
-          } else return obj;
-        });
-      });
-    }, 2000);
-
-    setTimeout(() => {
-      setResponseChildren((prevChildren) => {
-        return prevChildren.filter((obj) => obj.key !== key);
-      });
-
-      router.refresh();
-    }, 3000);
-  };
+  const [resultChildren, setResultChildren] = useState<Array<OperationResult>>([]);
 
   return (
     <>
@@ -332,12 +279,14 @@ export default function ReservationForm({
                 >
                   Date
                 </label>
+
                 <span data-cy="date">
                   <DatePicker
                     day={bookDate}
                     onDateChange={(value: Dayjs) => setBookDate(value)}
                   />
                 </span>
+
               </div>
               <div className="flex flex-col gap-y-2">
                 <label
@@ -489,6 +438,13 @@ export default function ReservationForm({
                 Rent
               </button>
             </div>
+          </div>
+          <div className="h-screen w-1/2 flex flex-col items-end fixed right-0 top-0 mt-[100px] pointer-events-none">
+            {
+              resultChildren.map((obj) => (
+                <OperationResult obj={obj} heading={obj.props.valid ? "Success:" : "Reservation Failed:"}/>
+              ))
+            }
           </div>
         </div>
       ) : (
