@@ -4,6 +4,7 @@ import getRentals from "@/libs/getRentals";
 import { authOptions } from "@/libs/auth";
 import { getServerSession } from "next-auth";
 import getBookings from "@/libs/getBookings";
+import getUserProfile from "@/libs/getUserProfile";
 
 export default async function CarReservationPage() {
   const shops: rentals = await getRentals();
@@ -13,11 +14,14 @@ export default async function CarReservationPage() {
   if (!session) return;
   const bookings: Bookings = await getBookings(session.user.token);
 
+  const user = await getUserProfile(session.user.token);
+  user.token = session.user.token;
+
   return (
     <div className="max-h-[90vh] overflow-y-hidden">
       <ReservationForm
         shops={shops}
-        user={session.user}
+        user={user}
         bookingsAmount={bookings.count}
       />
     </div>

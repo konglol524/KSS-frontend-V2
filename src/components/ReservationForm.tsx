@@ -8,7 +8,8 @@ import { Dayjs } from "dayjs";
 import ShopSelect from "./ShopSelect";
 import getUserProfile from "@/libs/getUserProfile";
 import addBooking from "@/libs/addBooking";
-
+import { DatePicker } from "./DatePicker";
+import { Input } from "./TextInput";
 export default function ReservationForm({
   shops,
   user,
@@ -35,7 +36,6 @@ export default function ReservationForm({
   const [selectedShop, setSelectedShop] = useState<string>("None");
   const [discount, setDiscount] = useState<number>(0);
   const [newUser, setNewUser] = useState<any>(user);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const currentCostPerDay =
     shops.data.find((rental: rentalProvider) => rental._id === selectedShop)
@@ -54,20 +54,6 @@ export default function ReservationForm({
       clearTimeout(redirectTimeout);
     };
   }, []);
-
-  // useEffect(() => {
-  //     const fetchUserProfile = async () => {
-  //       try {
-  //         const updatedUser = await getUserProfile(user.token);
-  //         setNewUser(updatedUser);
-  //         setIsLoading(!isLoading);
-  //       } catch (error) {
-  //         console.error("Error fetching user profile:", error);
-  //       }
-  //     };
-
-  //     fetchUserProfile();
-  //   }, [isLoading]);
 
   const maxDiscount = Math.ceil(
     Math.min(newUser.data.point, (currentCostPerDay * daySpend) / 10)
@@ -346,12 +332,14 @@ export default function ReservationForm({
                 >
                   Date
                 </label>
-                <div className="border-[#FA4EAB] rounded border-2">
-                  <DateReserve
+                <DatePicker
+                  day={bookDate}
+                  onDateChange={(value: Dayjs) => setBookDate(value)}
+                />
+                {/* <DateReserve
                     day={bookDate}
                     onDateChange={(value: Dayjs) => setBookDate(value)}
-                  />
-                </div>
+                  /> */}
               </div>
               <div className="flex flex-col gap-y-2">
                 <label
@@ -360,12 +348,15 @@ export default function ReservationForm({
                 >
                   Duration
                 </label>
-                <input
+                <Input
                   min={1}
                   value={daySpend}
                   type="number"
-                  className="border-[#FA4EAB] border-2 text-center bg-white rounded text-black py-4"
-                  onChange={(e) => setDaySpend(parseInt(e.target.value))}
+                  className="text-start bg-white rounded text-black"
+                  onChange={(e) => {
+                    if (!e.target.value) return;
+                    setDaySpend(parseInt(e.target.value));
+                  }}
                 />
               </div>
               <div className="flex flex-col gap-y-2">
@@ -375,13 +366,10 @@ export default function ReservationForm({
                 >
                   Rental Provider
                 </label>
-                <div className="border-[#FA4EAB] rounded border-2">
-                  <ShopSelect
-                    value={selectedShop}
-                    shops={shops}
-                    onShopChange={(value: string) => setSelectedShop(value)}
-                  />
-                </div>
+                <ShopSelect
+                  shops={shops}
+                  onShopChange={(value: string) => setSelectedShop(value)}
+                />
               </div>
               <div className="flex flex-col gap-y-2">
                 <label
@@ -390,15 +378,19 @@ export default function ReservationForm({
                 >
                   Point Usage
                 </label>
-                <input
+                <Input
                   value={discount}
                   min={0}
                   max={maxDiscount}
                   type="number"
                   id="discount"
-                  className="border-[#FA4EAB] border-2 text-center bg-white rounded text-black py-4"
+                  className="text-start bg-white rounded text-black"
                   onChange={(e) => {
-                    if (+e.target.value < 0 || +e.target.value > maxDiscount)
+                    if (
+                      +e.target.value < 0 ||
+                      +e.target.value > maxDiscount ||
+                      !e.target.value
+                    )
                       // if (+e.target.value < 0 || +e.target.value > 10)
                       return;
                     setDiscount(parseInt(e.target.value));
@@ -418,18 +410,29 @@ export default function ReservationForm({
               <div className="flex justify-between items-center">
                 <div className="flex justify-between items-center w-full">
                   <p className="font-sans text-2xl text-[#060606]">Total</p>
-                  <span
-                    className={`text-xl ${
-                      discount > 0 ? "line-through" : ""
-                    } text-gray-500`}
-                  >
-                    $ {(currentCostPerDay * daySpend).toLocaleString()}
-                  </span>
+                  <div className="flex items-center gap-x-2">
+                    <span
+                      className={`text-xl ${
+                        discount > 0 ? "line-through" : ""
+                      } text-gray-500`}
+                    >
+                      $ {(currentCostPerDay * daySpend).toLocaleString()}
+                    </span>
+                    {discount > 0 && (
+                      <span className="text-[#FA4EAB] text-xl font-bold">
+                        $
+                        {Math.max(
+                          0,
+                          currentCostPerDay * daySpend - discount * 10
+                        ).toLocaleString() + " "}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col px-2">
                 <li className="font-sans text-left text-sm text-[#FA4EAB]">
-                  using 10 points discount
+                  using {discount} points discount
                 </li>
                 <li className="font-sans text-left text-sm text-[#FA4EAB]">
                   Promotion discount
