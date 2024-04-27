@@ -305,10 +305,14 @@ export default function ReservationForm({
                 >
                   Date
                 </label>
-                <DatePicker
-                  day={bookDate}
-                  onDateChange={(value: Dayjs) => setBookDate(value)}
-                />
+
+                <span data-cy="date">
+                  <DatePicker
+                    day={bookDate}
+                    onDateChange={(value: Dayjs) => setBookDate(value)}
+                  />
+                </span>
+
               </div>
               <div className="flex flex-col gap-y-2">
                 <label
@@ -318,6 +322,7 @@ export default function ReservationForm({
                   Duration
                 </label>
                 <Input
+                  data-cy="daySpend"
                   min={1}
                   value={daySpend}
                   type="number"
@@ -335,6 +340,8 @@ export default function ReservationForm({
                 >
                   Rental Provider
                 </label>
+
+        <span data-cy="shopSelect">
                 <ShopSelect
                   shops={shops}
                   onShopChange={(value: string) => {
@@ -342,6 +349,8 @@ export default function ReservationForm({
                     setpromotype(null);
                   }}
                 />
+        </span>
+                
               </div>
               <div className="flex flex-col gap-y-2">
                 <div className="flex justify-between">
@@ -352,7 +361,8 @@ export default function ReservationForm({
                     Point Usage
                   </label>
                   <label className="font-semibold text-xs font-sans text-[#FA4EAB] text-left">
-                    Your Current Point: {newUser.data.point}
+                    Your Current Point:{" "}
+                    <span data-cy="point">{newUser.data.point}</span>
                   </label>
                 </div>
 
@@ -436,8 +446,11 @@ export default function ReservationForm({
                     >
                       $ {(currentCostPerDay * daySpend ).toLocaleString()}
                     </span>
-                    {(discount > 0 || promotype) && (
-                      <span className="text-[#FA4EAB] text-xl font-bold">
+                    {(discount > 0 || promotype) > 0 && (
+                      <span
+                        className="text-[#FA4EAB] text-xl font-bold"
+                        data-cy="decreasedCost"
+                      >
                         $
                         {totalcouse}
                       </span>
