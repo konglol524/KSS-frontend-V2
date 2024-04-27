@@ -72,3 +72,8 @@ interface Promotion {
   ratingSum:number;
 }
 
+interface OperationResult {
+  key: number;
+  isVisible: boolean;
+  props: { valid: boolean; text: string };
+}
