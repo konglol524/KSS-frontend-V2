@@ -77,3 +77,18 @@ interface OperationResult {
   isVisible: boolean;
   props: { valid: boolean; text: string };
 }
+
+interface PromoForBooking {
+  name: string;
+  rentals: string;
+  promoType: string;
+  promoNum: number;
+  ratingCount: number;
+  ratingSum: number;
+}
+
+interface Promo {
+  id: string;
+  name: string;
+  populatedPromotions: PromoForBooking[];
+}
