@@ -336,10 +336,6 @@ export default function ReservationForm({
                   day={bookDate}
                   onDateChange={(value: Dayjs) => setBookDate(value)}
                 />
-                {/* <DateReserve
-                    day={bookDate}
-                    onDateChange={(value: Dayjs) => setBookDate(value)}
-                  /> */}
               </div>
               <div className="flex flex-col gap-y-2">
                 <label
@@ -372,12 +368,18 @@ export default function ReservationForm({
                 />
               </div>
               <div className="flex flex-col gap-y-2">
-                <label
-                  className="font-semibold text-xs font-sans text-[#FA4EAB] text-left"
-                  htmlFor="input1"
-                >
-                  Point Usage
-                </label>
+                <div className="flex justify-between">
+                  <label
+                    className="font-semibold text-xs font-sans text-[#FA4EAB] text-left"
+                    htmlFor="input1"
+                  >
+                    Point Usage
+                  </label>
+                  <label className="font-semibold text-xs font-sans text-[#FA4EAB] text-left">
+                    Your Current Point: {newUser.data.point}
+                  </label>
+                </div>
+
                 <Input
                   value={discount}
                   min={0}
