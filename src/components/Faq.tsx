@@ -16,12 +16,16 @@ export default function Faq() {
   const [change, setChange] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isVolume, setIsVolume] = useState("0");
-  const [text, setText] = useState("");
+  const [text, setText] = useState(
+    "Welcome to DekBanJarnKim Car Rental System, where renting a car is as easy as a few clicks."
+  );
   const [isFinished, setIsFinished] = useState(true);
+  const [duration, setDuration] = useState(7);
+  const [sound, setSound] = useState("d1");
+
+  const audioRef = useRef<any>(null);
 
   let interact: NodeJS.Timeout;
-
-  let typingSound: NodeJS.Timeout;
 
   const handleInteraction = () => {
     setInteraction((prevInteraction) =>
@@ -30,7 +34,12 @@ export default function Faq() {
   };
 
   useEffect(() => {
-    const audio = new Audio("/sound/typing3.wav");
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    const audio = new Audio(`/sound/${sound}.wav`);
+    audioRef.current = audio;
+
     if (isVolume === "0") {
       audio.volume = 0;
     } else {
@@ -38,20 +47,15 @@ export default function Faq() {
     }
     if (change) {
       interact = setInterval(handleInteraction, 200);
-      typingSound = setInterval(() => {
-        audio.play();
-      }, 100);
+      audio.play();
     } else {
       clearInterval(interact);
-      clearInterval(typingSound);
       setInteraction("idle");
-      audio.pause();
     }
     return () => {
       clearInterval(interact);
-      clearInterval(typingSound);
     };
-  }, [change, isVolume]);
+  }, [change, isVolume, sound]);
 
   return (
     <motion.div
@@ -68,6 +72,8 @@ export default function Faq() {
           }`}
         >
           <PopMenu
+            setDuration={setDuration}
+            setSound={setSound}
             isFinished={isFinished}
             setIsFinished={setIsFinished}
             setText={setText}
@@ -76,24 +82,34 @@ export default function Faq() {
             content={[
               {
                 content: "What is this website?",
-                text: "Welcome to DekBanJarnKim Car Rental System, where reserving your ride is just a few clicks away!",
+                text: "This website is a simple and user-friendly car rental booking system, allowing users to easily reserve cars that suit their needs.",
+                sFile: "d9",
+                dur: 9,
               },
               {
                 content: "How do I book a car?",
                 text: "To book a car, head to the car page using the top-right navigation. From there, select the car you're interested in, and you'll be directed to the booking page seamlessly.",
+                sFile: "d6",
+                dur: 11,
               },
               {
                 content: "How do I cancel a booking?",
                 text: "To cancel a booking, go to your user page using the navigation at the top right. Then, choose the booking you want to cancel and click the delete button next to it.",
+                sFile: "d7",
+                dur: 10,
               },
               {
                 content: "How can i choose a promotion?",
                 text: "To choose a promotion, pick a provider that offers the promotion when booking. Then, you can select the promotion during the booking.",
+                sFile: "d8",
+                dur: 8,
               },
             ]}
             icon="icon/question.svg"
           />
           <PopMenu
+            setDuration={setDuration}
+            setSound={setSound}
             isFinished={isFinished}
             setIsFinished={setIsFinished}
             setText={setText}
@@ -103,18 +119,26 @@ export default function Faq() {
               {
                 content: "Who are you?",
                 text: "It's wonderful to meet you! I'm Hikari Rei, your friendly guide through this enchanting website.",
+                sFile: "d2",
+                dur: 6,
               },
               {
                 content: "What are you doing here?",
                 text: "I'm here to assist you. Whether it's booking a car or answering any questions you have about our website, just let me know.",
+                sFile: "d3",
+                dur: 8,
               },
               {
                 content: "How can I contact you?",
                 text: "Curious how to reach out? 💌 Unfortunately, that's a bit beyond my abilities right now. But fear not! I'll remain your reliable assistant",
+                sFile: "d4",
+                dur: 10,
               },
               {
                 content: "I'm going now.",
                 text: "Thanks for stopping by and spending some time with me. Remember, I'm here whenever you need assistance or just want to chat.",
+                sFile: "d5",
+                dur: 8,
               },
             ]}
             icon="/icon/bubble.svg"
@@ -142,6 +166,8 @@ export default function Faq() {
               setText(
                 "Welcome to DekBanJarnKim Car Rental System, where renting a car is as easy as a few clicks."
               );
+              setSound("d1");
+              setDuration(7);
               setChange(true);
             } else {
               setChange(false);
@@ -169,6 +195,7 @@ export default function Faq() {
         className="absolute h-4/5 w-auto bottom-[25%]"
       />
       <TextAnim
+        duration={duration}
         setChange={setChange}
         isFinished={isFinished}
         setIsFinished={setIsFinished}
