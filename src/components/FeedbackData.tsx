@@ -7,11 +7,13 @@ import { useState } from 'react';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
+
 interface FeedbackDataProps {
   feedbackData: any[];
+  id: string;
 }
 
-const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData }) => {
+const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [totalPages, setTotalPages] = useState(Math.ceil(feedbackData.length / itemsPerPage));
@@ -19,6 +21,7 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = feedbackData.slice(indexOfFirstItem, indexOfLastItem);
+  
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
@@ -71,6 +74,11 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData }) => {
                     {feedback.comment}
                   </div>
                 </div>
+                {feedback.user === id && (
+                <button className="p-2 rounded-md transition-colors duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                Edit
+                </button>
+                )}
               </div>
             );
           })}

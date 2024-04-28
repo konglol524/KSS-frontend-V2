@@ -25,10 +25,10 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
     
     const promotionDetail = await getPromotion(params.pid);
     const session = await getServerSession(authOptions);
-    if(!session) return;
+    //if(!session) return;
 
     //get user profile
-    const userProfilePicData = await getProfilePicturebyId(session?.user.data._id);
+    const userProfilePicData = await getProfilePicturebyId(session?.user?.data?._id || '');
     const userProfilePic = userProfilePicData.data.profilePic || userProfilePicData.data;
 
     //get feedback from promotion
@@ -61,13 +61,18 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
             <div className="w-[60vw] mt-12 text-left pl-[49px]">
                 <span className="text-black text-4xl font-normal font-['Lato']">Comments</span>
             </div>
+            <div className="flex flex-col items-center h-auto bg-[#FFF2F9]">
+              
                 <div className="mt-8 bg-pink-200 items-center bg-flower w-[60vw] rounded-lg flex flex-col p-[49px] gap-10 shadow-[0_4px_4px_-0px_rgba(250,78,171,1)] ">
-                    <div className="bg-white w-[55vw] rounded-lg flex flex-grow p-[25px]">
-                        <Image src={userProfilePic} alt="Profile" className="w-12 h-12 justify-center rounded-full" width={0} height={0} draggable={false} />
-                        <FeedbackForm promoID={params.pid} token={session?.user.token} />
-                    </div>
-                    <FeedbackData feedbackData={feedbackData.data} />
-                    </div>
+                {session && (
+                <div className="bg-white w-[55vw] rounded-lg flex flex-grow p-[25px]">
+                    <Image src={userProfilePic} alt="Profile" className="w-12 h-12 justify-center rounded-full" width={0} height={0} draggable={false} />
+                    <FeedbackForm promoID={params.pid} token={session?.user.token} />
+                </div>
+                )}
+                <FeedbackData feedbackData={feedbackData.data} id={session?.user?.data?._id || ''}/>
+            </div>
+        </div>  
         </div>  
     );
 }
