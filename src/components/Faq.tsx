@@ -38,13 +38,15 @@ export default function Faq() {
       audioRef.current.pause();
     }
     const audio = new Audio(`/sound/${sound}.wav`);
+
     audioRef.current = audio;
 
     if (isVolume === "0") {
-      audio.volume = 0;
+      audioRef.current.volume = 0;
     } else {
-      audio.volume = 0.5;
+      audioRef.current.volume = 0.5;
     }
+
     if (change) {
       interact = setInterval(handleInteraction, 200);
       audio.play();
@@ -55,7 +57,17 @@ export default function Faq() {
     return () => {
       clearInterval(interact);
     };
-  }, [change, isVolume, sound]);
+  }, [change]);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isVolume === "0") {
+        audioRef.current.volume = 0;
+      } else {
+        audioRef.current.volume = 0.5;
+      }
+    }
+  }, [isVolume]);
 
   return (
     <motion.div
