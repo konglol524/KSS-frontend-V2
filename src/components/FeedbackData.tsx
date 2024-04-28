@@ -5,7 +5,6 @@ import { useState } from 'react';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-
 interface FeedbackDataProps {
   feedbackData: any[];
   id: string;
@@ -19,7 +18,6 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = feedbackData.slice(indexOfFirstItem, indexOfLastItem);
-  
 
   const renderPageNumbers = () => {
     const pageNumbers = [];

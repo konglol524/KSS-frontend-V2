@@ -11,24 +11,14 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
 
     //static promotion info
     const mockPromotionRepo = [
-        { name: "Tanza Hot Sale", 
-        description: "Rent from any branch of Tanza Cool Cars and get a whopping $10 discount!", 
-        picture:`/promotions/0.jpg` },
-        { name: "One Hit Sale", 
-        description: "Rent from Kong One Shot and get a special 15% discount today!", 
-        picture:`/promotions/1.jpg` },
-        { name: "Guadalupe Special Sale", 
-        description: "Come to Guadalupe and get $150 off your next purchase. No questions asked!", 
-        picture:`/promotions/2.jpg` }
+        { name: "Tanza Hot Sale", description: "Tanza Hot Sale description aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsfssdfdsfsdfsfdsfdsfdsfdsfdsgfdrfsfgodfgoidrjgoaerdjgergjodgjedrkgjfdriogjiodfjgiodrfjg", picture:`/promotions/0.jpg` },
+        { name: "One Hit Sale", description: "One Hit Sale description", picture:`/promotions/1.jpg` },
+        { name: "Guadalupe Special Sale", description: "Guadalupe Special Sale description", picture:`/promotions/2.jpg` }
     ];
     
     const promotionDetail = await getPromotion(params.pid);
     const session = await getServerSession(authOptions);
-    if(!session) return;
-
-    //get user profile
-    const userProfilePicData = await getProfilePicturebyId(session?.user.data._id);
-    const userProfilePic = userProfilePicData.data.profilePic || userProfilePicData.data;
+    //if(!session) return;
 
     //get feedback from promotion
     const matchedPromotion = mockPromotionRepo.find(promotion => promotion.name === promotionDetail.data.name);
@@ -60,15 +50,15 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
             <div className="w-[60vw] mt-12 text-left pl-[49px]">
                 <span className="text-black text-4xl font-normal font-['Lato']">Comments</span>
             </div>
-            <div className="flex flex-col items-center h-auto bg-[#FFF2F9]">
-              
                 <div className="mt-8 bg-pink-200 items-center bg-flower w-[60vw] rounded-lg flex flex-col p-[49px] gap-10 shadow-[0_4px_4px_-0px_rgba(250,78,171,1)] ">
-                    <div className="bg-white w-[55vw] rounded-lg flex flex-grow p-[25px]">
-                        <Image src={userProfilePic} alt="Profile" className="w-12 h-12 justify-center rounded-full" width={0} height={0} draggable={false} />
-                        <FeedbackForm promoID={params.pid} token={session?.user.token} />
-                    </div>
-                    <FeedbackData feedbackData={feedbackData.data} />
-                    </div>
-        </div>  
+                {session && (
+                <div className="bg-white w-[55vw] rounded-lg flex flex-grow p-[25px]">
+                    <Image src="/img/profilePicture.png" alt="Profile" className="w-12 h-12 justify-center rounded-full" width={0} height={0} draggable={false} />
+                    <FeedbackForm promoID={params.pid} token={session?.user.token} />
+                </div>
+                )}
+                <FeedbackData feedbackData={feedbackData.data} id={session?.user?.data?._id || ''}/>
+            </div>
+        </div>   
     );
 }
