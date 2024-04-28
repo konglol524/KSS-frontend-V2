@@ -13,16 +13,11 @@ export default async function getProfilePicturebyId(uid: string) {
     }
     return response.data;
   } catch (error: any) {
-    if (error.response && error.response.status === 404) {
       console.error("Profile picture not found, using default picture");
       return {
         data: {
           profilePic: "/img/defaultUser2.png"
         }
       };
-    } else {
-      console.error("Error fetching profile picture:", error);
-      throw new Error("Failed to fetch profile picture");
-    }
   }
 }
