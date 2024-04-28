@@ -4,13 +4,19 @@ import Star from "@/components/Star";
 import { useState } from 'react';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import deleteUser from "@/libs/deleteUser";
+import { useRouter } from "next/navigation";
+import Router from "next/router";
 
 interface FeedbackDataProps {
   feedbackData: any[];
   id: string;
+  token: string;
+  role: string;
 }
 
-const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id }) => {
+
+const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id,token,role }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [totalPages, setTotalPages] = useState(Math.ceil(feedbackData.length / itemsPerPage));
@@ -40,7 +46,7 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id }) => {
 
     return pageNumbers;
   };
-
+  const router = useRouter();
   return (
     <div>
       {feedbackData && (
@@ -69,9 +75,15 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id }) => {
                     {feedback.comment}
                   </div>
                 </div>
-                {feedback.user === id && (
-                <button className="p-2 rounded-md transition-colors duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed">
-                Edit
+                {role === "admin" && feedback.user !== id && ( 
+                <button
+                className="p-2 rounded-md transition-colors duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={async () => {
+                  await deleteUser(token, feedback.user);
+                  router.refresh();
+                }}
+                >
+                Ban User
                 </button>
                 )}
               </div>

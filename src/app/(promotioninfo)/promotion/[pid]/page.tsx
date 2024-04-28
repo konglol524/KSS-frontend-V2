@@ -57,7 +57,7 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
                     <FeedbackForm promoID={params.pid} token={session?.user.token} />
                 </div>
                 )}
-                <FeedbackData feedbackData={feedbackData.data} id={session?.user?.data?._id || ''}/>
+                <FeedbackData feedbackData={feedbackData.data} token={session?.user?.token || ''} id={session?.user?.data?._id || '' }  role={session?.user?.data?.role || '' }/>
             </div>
         </div>   
     );
