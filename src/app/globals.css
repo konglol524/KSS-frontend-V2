@@ -83,6 +83,19 @@
   font-family: sans-serif;
 }
 
+.bgz {
+  background: repeating-linear-gradient(
+    #303030,
+    #303030 1px,
+    #333232 1px,
+    #333232 2px,
+    #202020 2px,
+    #202020 3px,
+    #101010 3px,
+    #101010 4px
+  );
+}
+
 .dekbanjarnkim {
   --bg-size: 400%;
   --first-color: #fa4eab;

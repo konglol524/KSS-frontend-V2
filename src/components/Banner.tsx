@@ -41,12 +41,15 @@ export default function Banner() {
               confidence today.
             </span>
           </div>
-          <div className="bg-pink-500 shadow w-[80%] lg:w-[40%] select-none h-[66px] mt-[33px] gap-3 cursor-pointer hover:scale-110 transition-transform flex items-center text-md lg:text-2xl justify-center rounded-md text-white font-[600]">
+          <Link
+            href={"/cars"}
+            prefetch={true}
+            draggable={false}
+            className="bg-pink-500 shadow w-[80%] lg:w-[40%] select-none h-[66px] mt-[33px] gap-3 cursor-pointer hover:scale-110 transition-transform flex items-center text-md lg:text-2xl justify-center rounded-md text-white font-[600]"
+          >
             <ShoppingCartIcon />
-            <Link href={"/cars"} prefetch={true} draggable={false}>
-              Rent Now
-            </Link>
-          </div>
+            Rent Now
+          </Link>
         </div>
       </section>
       <section className="bg-pink-100 col-span-1 lg:col-span-3 bg-[url(/img/bgscene.png)]  bg-cover bg-no-repeat flex items-center justify-start">
@@ -56,7 +59,7 @@ export default function Banner() {
           height={0}
           sizes="100vw"
           alt="homecar"
-          className="w-full h-auto transition -translate-x-[8%] z-1 "
+          className="w-full h-auto transition -translate-x-[8%] z-1 select-none"
           draggable={false}
         />
       </section>
@@ -72,7 +75,7 @@ export default function Banner() {
         >
           <Image
             src="/img/arrowdown2.png"
-            className="object-contain cursor-pointer animate-bounce"
+            className="object-contain select-none cursor-pointer animate-bounce"
             draggable={false}
             width={60}
             height={60}
