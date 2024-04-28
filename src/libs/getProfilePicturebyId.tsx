@@ -16,7 +16,7 @@ export default async function getProfilePicturebyId(uid: string) {
       console.error("Profile picture not found, using default picture");
       return {
         data: {
-          profilePic: "/img/defaultUser2.png"
+          profilePic: "/img/profilePicture.png"
         }
       };
   }
