@@ -6,7 +6,9 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import deleteUser from "@/libs/deleteUser";
 import { useRouter } from "next/navigation";
-import Router from "next/router";
+import deleteFeedback from "@/libs/deleteFeedback";
+import { MdDeleteOutline } from "react-icons/md";
+import { TiCancel } from "react-icons/ti";
 
 interface FeedbackDataProps {
   feedbackData: any[];
@@ -77,18 +79,30 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id,token,role 
                 </div>
                 {role === "admin" && feedback.user !== id && ( 
                 <button
-                className="p-2 rounded-md transition-colors duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="p-2 rounded-md transition-colors duration-300 bg-red-400 text-gray-700 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={async () => {
                   await deleteUser(token, feedback.user);
                   router.refresh();
                 }}
                 >
-                Ban User
+                <TiCancel/>
+                </button>
+                )}
+                {(feedback.user === id || role === "admin") && ( 
+                <button
+                className="p-2 rounded-md transition-colors duration-300 bg-blue-400 text-gray-700 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed ml-2"
+                onClick={async () => {
+                  await deleteFeedback(token, feedback._id);
+                  router.refresh();
+                }}
+                >
+                  <MdDeleteOutline />
                 </button>
                 )}
               </div>
             );
           })}
+          
           <div className="mt-4 flex justify-center">
             <button
               onClick={() => setCurrentPage(currentPage - 1)}
