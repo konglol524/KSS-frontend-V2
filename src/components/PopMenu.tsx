@@ -9,14 +9,18 @@ const PopMenu = ({
   setChange,
   setIsFinished,
   isFinished,
+  setSound,
+  setDuration,
 }: {
   icon: string;
-  content: Array<{ content: string; text: string }>;
+  content: Array<{ content: string; text: string; sFile: string; dur: number }>;
   header: string;
   setText: Function;
   setChange: Function;
   setIsFinished: Function;
   isFinished: boolean;
+  setSound: Function;
+  setDuration: Function;
 }) => (
   <Popover.Root>
     <Popover.Trigger asChild>
@@ -40,7 +44,9 @@ const PopMenu = ({
             <p
               key={item.text}
               onClick={() => {
+                setDuration(item.dur);
                 setText(item.text);
+                setSound(item.sFile);
                 if (!isFinished) {
                   setChange(false);
                   setTimeout(() => {

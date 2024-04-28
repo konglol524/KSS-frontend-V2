@@ -10,6 +10,7 @@ export default function TextAnim({
   isFinished,
   setChange,
   setIsFinished,
+  duration,
 }: {
   text: string;
   className?: string;
@@ -17,6 +18,7 @@ export default function TextAnim({
   isFinished: boolean;
   setChange: Function;
   setIsFinished: Function;
+  duration: number;
 }) {
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest: any) => Math.round(latest));
@@ -30,13 +32,7 @@ export default function TextAnim({
       count.set(0);
       controlRef.current = animate(count, text.length, {
         type: "tween",
-        duration: 5,
-        onUpdate(latest) {
-          // if (isFinished) {
-          //   controlRef.current.stop();
-          //   setChange(false);
-          // }
-        },
+        duration: duration,
         onComplete: () => {
           setChange(false);
           setIsFinished(true);
