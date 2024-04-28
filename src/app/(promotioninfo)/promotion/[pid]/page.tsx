@@ -4,7 +4,6 @@ import getFeedback from "@/libs/getFeedback";
 import Star from "@/components/Star"
 import { authOptions } from "@/libs/auth";
 import { getServerSession } from "next-auth";
-import getProfilePicturebyId from "@/libs/getProfilePicturebyId";
 import FeedbackForm from "@/components/FeedbackForm";
 import FeedbackData from "@/components/FeedbackData";
 
@@ -20,10 +19,6 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
     const promotionDetail = await getPromotion(params.pid);
     const session = await getServerSession(authOptions);
     if(!session) return;
-
-    //get user profile
-    const userProfilePicData = await getProfilePicturebyId(session?.user.data._id);
-    const userProfilePic = userProfilePicData.data.profilePic || userProfilePicData.data;
 
     //get feedback from promotion
     const matchedPromotion = mockPromotionRepo.find(promotion => promotion.name === promotionDetail.data.name);
@@ -57,7 +52,7 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
             </div>
                 <div className="mt-8 bg-pink-200 items-center bg-flower w-[60vw] rounded-lg flex flex-col p-[49px] gap-10 shadow-[0_4px_4px_-0px_rgba(250,78,171,1)] ">
                     <div className="bg-white w-[55vw] rounded-lg flex flex-grow p-[25px]">
-                        <Image src={userProfilePic} alt="Profile" className="w-12 h-12 justify-center rounded-full" width={0} height={0} draggable={false} />
+                        <Image src="/img/profilePicture.png" alt="Profile" className="w-12 h-12 justify-center rounded-full" width={0} height={0} draggable={false} />
                         <FeedbackForm promoID={params.pid} token={session?.user.token} />
                     </div>
                     <FeedbackData feedbackData={feedbackData.data} />
