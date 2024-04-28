@@ -105,11 +105,11 @@ export default function BookingList({
     }
   }, [editID]);
 
-const Carfilename = [{model:"Honda Civic", img:'/cars/civic.jpg'},
-  {model:"Honda Accord", img:'/cars/accord.jpg'},
-  {model:"Toyota Fortuner", img:'/cars/fortuner.jpg'},
-  {model:"Lambo Blue", img:'/cars/lambo.jpg'},
-  {model:"Tesla Model 3", img:'/cars/tesla.jpg'},
+const Carfilename = [{model:"Honda Civic", img:'/cars/civic.png'},
+  {model:"Honda Accord", img:'/cars/accord.png'},
+  {model:"Toyota Fortuner", img:'/cars/fortuner.png'},
+  {model:"Lambo Blue", img:'/cars/lambo.png'},
+  {model:"Tesla Model 3", img:'/cars/tesla.png'},
 ]
 
   return (
