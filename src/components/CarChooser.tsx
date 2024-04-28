@@ -41,7 +41,7 @@ export default function CarChooser() {
         {slides.map((slide) => slide)}
         <br />
       </Swiper>
-      <div className="w-full flex flex-wrap items-center justify-center gap-4 p-4 bg-white rounded-lg">
+      <div className="w-full flex flex-wrap items-center justify-center gap-4 p-4 bg-[#FFF2F9] rounded-lg">
         {Object.keys(cars).map((car, index) => (
           <Image
             key={car}
