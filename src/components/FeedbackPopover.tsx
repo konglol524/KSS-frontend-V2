@@ -32,9 +32,9 @@ const FeedbackPopover: React.FC<FeedbackPopoverProps> = ({ feedback, id, token, 
       <button onClick={() => setShowPopover(!showPopover)}>
         <MoreHorizIcon className="text-gray-500 hover:text-gray-700 rotate-90" />
       </button>
-    
+
       {showPopover && (
-        <div className="absolute z-10 bg-white rounded-md shadow-lg p-2">
+        <div className="ml-5 absolute z-10 bg-white rounded-md shadow-lg p-2">
           {role === 'admin' && feedback.user !== id && (
             <button
               className="w-full text-left px-2 py-1 hover:bg-gray-100 flex items-center"

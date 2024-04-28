@@ -56,28 +56,28 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData, id, token, ro
           {currentItems.map((feedback) => {
             const profilePic = "/img/profilePicture.png";
             return (
-              <div
-                className="bg-white w-[55vw] rounded-lg mt-4 flex flex-row p-[25px] items-center"
-                key={feedback._id}
-              >
-                <Image
-                  src={profilePic}
-                  alt="Profile"
-                  className="w-12 h-12 rounded-full"
-                  width={0}
-                  height={0}
-                  draggable={false}
-                />
-                <div className="text-left ml-6">
-                  <div className="text-lg text-black font-semibold">
-                    {feedback.username}
-                  </div>
-                  <Star stars={feedback.rating} fontsize="sm" />
-                  <div className="text-base text-wrap break-all">
-                    {feedback.comment}
+              <div className="bg-white w-[55vw] rounded-lg mt-4 flex flex-row p-[25px] items-center justify-between" key={feedback._id}>
+                <div className="flex items-center">
+                  <Image
+                    src={profilePic}
+                    alt="Profile"
+                    className="w-12 h-12 rounded-full"
+                    width={0}
+                    height={0}
+                    draggable={false}/>
+                  <div className="text-left ml-6">
+                    <div className="text-lg text-black font-semibold">
+                      {feedback.username}
+                    </div>
+                    <Star stars={feedback.rating} fontsize="sm" />
+                    <div className="text-base text-wrap break-all">
+                      {feedback.comment}
+                    </div>
                   </div>
                 </div>
-                <FeedbackPopover feedback={feedback} id={id} token={token} role={role} />
+                <div className="">
+                  <FeedbackPopover feedback={feedback} id={id} token={token} role={role} />
+                </div>
               </div>
             );
           })}
