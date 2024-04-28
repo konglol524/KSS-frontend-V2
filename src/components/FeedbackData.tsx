@@ -1,8 +1,6 @@
 'use client'
 import Image from "next/image";
-import getProfilePicturebyId from "@/libs/getProfilePicturebyId";
 import Star from "@/components/Star";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useState } from 'react';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
@@ -50,8 +48,7 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id }) => {
       {feedbackData && (
         <div>
           {currentItems.map(async (feedback: any) => {
-            const profilePicData = await getProfilePicturebyId(feedback.user);
-            const profilePic = profilePicData.data.profilePic || profilePicData.data;
+            const profilePic = "/img/profilePicture.png";
             return (
               <div
                 className="bg-white w-[55vw] rounded-lg mt-4 flex flex-row p-[25px] items-center"
