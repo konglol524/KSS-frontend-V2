@@ -38,14 +38,12 @@ export default function Faq() {
       audioRef.current.pause();
     }
     const audio = new Audio(`/sound/${sound}.wav`);
-
-    audioRef.current = audio;
-
     if (isVolume === "0") {
-      audioRef.current.volume = 0;
+      audio.volume = 0;
     } else {
-      audioRef.current.volume = 0.5;
+      audio.volume = 0.5;
     }
+    audioRef.current = audio;
 
     if (change) {
       interact = setInterval(handleInteraction, 200);
