@@ -22,7 +22,7 @@ export default function PromotionSelect({
   return (
     <Select onValueChange={(value) => {forPomoDo(value)}}>
       <SelectTrigger className="w-full border-2 border-pink-400">
-        <SelectValue placeholder="Select Provider" />
+        <SelectValue placeholder="Select Promotion" />
       </SelectTrigger>
       <SelectContent>
       {shops.data.map((shop:any) => {

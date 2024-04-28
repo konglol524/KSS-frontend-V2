@@ -45,7 +45,7 @@ export default function CarChooser() {
         {Object.keys(cars).map((car, index) => (
           <Image
             key={car}
-            src={`/cars/${car}.jpg`}
+            src={cars[car].img}
             alt={car}
             width={0}
             height={0}
