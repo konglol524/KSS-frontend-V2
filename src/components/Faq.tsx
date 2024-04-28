@@ -55,6 +55,7 @@ export default function Faq() {
 
   return (
     <motion.div
+      initial={{ opacity: 0, x: "100%" }}
       animate={isOpen ? "open" : "closed"}
       variants={variants}
       transition={{ duration: 0.5 }}
