@@ -35,3 +35,13 @@
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }
+
+.swiper-scrollbar {
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 5px;
+}
+.swiper-scrollbar-drag {
+  background-color: #fa4eaad1;
+  height: 6px;
+  width: 6px;
+}
