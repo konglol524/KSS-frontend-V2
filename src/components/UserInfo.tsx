@@ -25,13 +25,16 @@ export default async function UserInfo({session}: {session:any}) {
               width={5}
               height={0}
               draggable={false}
-              ></Image>  
-        <div className="w-[49%] h-full bg-blue-300">
-            <h1>{profile.data.name}</h1>
-            <h1>{profile.data.email}</h1>
-            <h1>{profile.data.telephone}</h1>
-            <h1>{profile.data.point}</h1>
-            <h1>Member Since {dayjs(profile.data.createdAt?.toString()).format("DD/MM/YYYY")}</h1>
+              />
+        <div className="w-[49%] h-full bg-blue-300 text-start px-[1.5%] py-[2%]">
+            <h1 className="text-5xl">{profile.data.name}</h1>
+            <h1 className="text-base">{profile.data.email}</h1>
+            <h1 className="text-xl">Tel: {profile.data.telephone}</h1>
+            <div className=" w-full border-[1px] border-black rounded-lg"></div>
+            <h1 className="text-xl">Points: {profile.data.point}</h1>
+            <div className=" w-full border-[1px] border-black rounded-lg"></div>
+            <h1 className="text-xl">Member Since: {dayjs(profile.data.createdAt?.toString()).format("DD/MM/YYYY")}</h1>
+            <div className=" w-full border-[1px] border-black rounded-lg"></div>
         </div>
     </div>
   );
