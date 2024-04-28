@@ -133,7 +133,7 @@ const Carfilename = [{model:"Honda Civic", img:'/cars/civic.png'},
                   alt="car im"
                   width={0}
                   height={0}
-                  sizes="100vw"
+                  sizes="10vw"
                   className="h-[100px] w-[150px] rounded-lg"
                   /></div>
                 <div className="flex flex-col items-start justify-center">
