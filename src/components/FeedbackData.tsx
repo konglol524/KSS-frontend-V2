@@ -7,8 +7,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import deleteUser from "@/libs/deleteUser";
 import { useRouter } from "next/navigation";
 import deleteFeedback from "@/libs/deleteFeedback";
-import { MdDeleteOutline } from "react-icons/md";
-import { TiCancel } from "react-icons/ti";
+import FeedbackPopover from "@/components/FeedbackPopover"; // Import the FeedbackPopover component
 
 interface FeedbackDataProps {
   feedbackData: any[];
@@ -17,8 +16,7 @@ interface FeedbackDataProps {
   role: string;
 }
 
-
-const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id,token,role }) => {
+const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData, id, token, role }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [totalPages, setTotalPages] = useState(Math.ceil(feedbackData.length / itemsPerPage));
@@ -48,12 +46,14 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id,token,role 
 
     return pageNumbers;
   };
+
   const router = useRouter();
+
   return (
     <div>
       {feedbackData && (
         <div>
-          {currentItems.map(async (feedback: any) => {
+          {currentItems.map((feedback) => {
             const profilePic = "/img/profilePicture.png";
             return (
               <div
@@ -73,36 +73,15 @@ const FeedbackData: React.FC<FeedbackDataProps> = ({ feedbackData,id,token,role 
                     {feedback.username}
                   </div>
                   <Star stars={feedback.rating} fontsize="sm" />
-                  <div className="text-bas text-wrap break-all">
+                  <div className="text-base text-wrap break-all">
                     {feedback.comment}
                   </div>
                 </div>
-                {role === "admin" && feedback.user !== id && ( 
-                <button
-                className="p-2 rounded-md transition-colors duration-300 bg-red-400 text-gray-700 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={async () => {
-                  await deleteUser(token, feedback.user);
-                  router.refresh();
-                }}
-                >
-                <TiCancel/>
-                </button>
-                )}
-                {(feedback.user === id || role === "admin") && ( 
-                <button
-                className="p-2 rounded-md transition-colors duration-300 bg-blue-400 text-gray-700 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed ml-2"
-                onClick={async () => {
-                  await deleteFeedback(token, feedback._id);
-                  router.refresh();
-                }}
-                >
-                  <MdDeleteOutline />
-                </button>
-                )}
+                <FeedbackPopover feedback={feedback} id={id} token={token} role={role} />
               </div>
             );
           })}
-          
+
           <div className="mt-4 flex justify-center">
             <button
               onClick={() => setCurrentPage(currentPage - 1)}
