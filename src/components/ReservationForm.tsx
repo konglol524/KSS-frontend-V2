@@ -140,6 +140,7 @@ export default function ReservationForm({
       }
 
       clearData();
+      router.refresh();
 
       setTimeout(() => {
         setOperationResult(resultChildren, setResultChildren, {

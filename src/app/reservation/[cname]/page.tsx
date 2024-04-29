@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 
 export default async function CarReservationPage() {
   const session = await getServerSession(authOptions);
-
+    
   if (!session) redirect("/");
 
   const shops: rentals = await getRentals();
