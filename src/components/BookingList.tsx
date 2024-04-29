@@ -117,11 +117,11 @@ const Carfilename = [{model:"Honda Civic", img:'/cars/civic.png'},
       {bookings && (
         <>
           <div className="w-full flex items-start justify-start"/>
-          <p className="text-5xl font-[100] mt-8 mb-7 w-[79%] text-left ml-[20%] text-pink-500 underline underline-offset-8 ">
-              Your Reservations
-          </p>
 
           <div className="w-full flex flex-col items-center justify-center gap-y-5">
+          <p className="text-5xl font-[100] mt-8 w-full mr-auto">
+              Your Reservations
+          </p>
           
           {bookings.data.map((item: Booking, idx) => {
             const [imgcar] = Carfilename.filter((n) => n.model === item.car)
