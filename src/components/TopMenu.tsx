@@ -82,6 +82,7 @@ export default function TopMenu() {
         />
         <div className="dropdown dropdown-hover lg:hidden">
           <Image
+            data-cy="menu"
             src="/img/menu.svg"
             alt="menu"
             width={32}
@@ -114,6 +115,7 @@ export default function TopMenu() {
                 customClasses="z-50 hover:scale-105"
                 item={
                   <Image
+                    data-cy="profile2"
                     width={0}
                     height={0}
                     sizes="100vh"
