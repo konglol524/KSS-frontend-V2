@@ -61,7 +61,34 @@ export default function Profile({
         console.log(result);
       };
     }
-  };
+      
+      return(
+  
+        <div className="w-full h-[200px] relative justify-center flex flex-row items-center">
+          <div className="w-auto h-full absolute flex items-center p-2 z-30 pointer-events-none">
+            {
+              (point>=500 && point < 1000) ? 
+              <div className="w-[350px] h-[350px] bg-[url('/img/ariF1.png')] bg-cover"/>
+              :
+              point >= 1000 ? <div className="w-[350px] h-[350px] bg-[url('/img/ariF2.png')] bg-cover"/> : null
+            }
+          </div>
+          <div className="absolute w-full h-full flex justify-center items-center">
+            <Avatar alt="Profile picture" src={image} sx={{ width: 300, height: 300}} className="absolute"/>
+            <label className="w-[200px] h-[200px] cursor-pointer grid grid-cols-1 justify-center mx-auto absolute">
+              <input
+                    id="file-upload"
+                    type="file"
+                    name="myFile"
+                    accept=".jpeg, .png, .jpg, .webp"
+                    className="hidden"
+                    onChange={handleUpload}
+                />
+            </label>
+          </div>
+        </div>
+        
+      )
 
   return (
     <div className="w-full h-[200px] relative justify-center flex flex-row items-center">
