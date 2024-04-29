@@ -1,7 +1,6 @@
 import user from "../fixtures/user.json";
 import url from "../fixtures/url.json";
 describe("US1-3", () => {
-  let oldPoint, newPoint;
   beforeEach(function () {
     cy.visit(`${url.frontend}`);
     cy.contains("a", "Rent Now").click();
@@ -10,8 +9,8 @@ describe("US1-3", () => {
     cy.get("#signin").click();
   });
   it("Point in Profile", () => {
-    cy.wait(3000);
-    cy.get('[data-cy="menu"]').trigger("mouseover");
+    cy.wait(4000);
+    cy.get('[data-cy="menu"]').click();
     cy.get('[data-cy="profile2"]').click({ timeout: 10000 });
     cy.get('[data-cy="profilePoint"]').should("be.visible");
     cy.get('[data-cy="profilePoint"]').should((p) => {
