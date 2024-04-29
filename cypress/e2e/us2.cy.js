@@ -3,7 +3,7 @@ import url from "../fixtures/url.json";
 describe("US1-2", () => {
   let oldPoint, newPoint;
   beforeEach(function () {
-    cy.visit(`${url.localhost}`);
+    cy.visit(`${url.frontend}`);
     cy.contains("a", "Rent Now").click();
     cy.get("#email").type(user.email);
     cy.get("#password").type(user.password);
@@ -37,7 +37,7 @@ describe("US1-2", () => {
         });
     }
   });
-  it.only("Show discounted cost", function () {
+  it("Show discounted cost", function () {
     cy.get('[data-cy="date"]').click({ multiple: true });
     cy.get("button[name='next-month']").click();
     cy.contains("button[name='day']", "16").click();
