@@ -17,7 +17,7 @@ describe("US1-1", () => {
       });
   });
 
-  it("Valid", function () {
+  it("Received New Point", function () {
     cy.get('[data-cy="date"]').click({ multiple: true });
     cy.get("button[name='next-month']").click();
     cy.contains("button[name='day']", "15").click();
@@ -34,7 +34,7 @@ describe("US1-1", () => {
         cy.expect(+newPoint).to.be.greaterThan(+oldPoint);
       });
   });
-  it("Invalid", function () {
+  it("Does not receive any New Point", function () {
     cy.get('[data-cy="date"]').click({ multiple: true });
     cy.get("button[name='next-month']").click();
     cy.contains("button[name='day']", "15").click();
