@@ -11,9 +11,15 @@ export default async function PromotionDetailPage({ params }: { params: { pid: s
 
     //static promotion info
     const mockPromotionRepo = [
-        { name: "Tanza Hot Sale", description: "Tanza Hot Sale description aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsfssdfdsfsdfsfdsfdsfdsfdsfdsgfdrfsfgodfgoidrjgoaerdjgergjodgjedrkgjfdriogjiodfjgiodrfjg", picture:`/promotions/0.jpg` },
-        { name: "One Hit Sale", description: "One Hit Sale description", picture:`/promotions/1.jpg` },
-        { name: "Guadalupe Special Sale", description: "Guadalupe Special Sale description", picture:`/promotions/2.jpg` }
+        { name: "Tanza Hot Sale", 
+        description: "Rent from any branch of Tanza Cool Cars and get a whopping $10 discount!", 
+        picture:`/promotions/0.jpg` },
+        { name: "One Hit Sale", 
+        description: "Rent from Kong One Shot and get a special 15% discount today!", 
+        picture:`/promotions/1.jpg` },
+        { name: "Guadalupe Special Sale", 
+        description: "Come to Guadalupe and get $150 off your next purchase. No questions asked!", 
+        picture:`/promotions/2.jpg` }
     ];
     
     const promotionDetail = await getPromotion(params.pid);
