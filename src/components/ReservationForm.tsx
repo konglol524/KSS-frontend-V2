@@ -46,7 +46,7 @@ export default function ReservationForm({
   const [promovalue, setpromovalue] = useState<number>(0);
   const [promotype, setpromotype] = useState<string | null>(null);
   const [totalcouse, settotalcouse] = useState<number>(0);
-  
+
   const currentCostPerDay =
     shops.data.find((rental: rentalProvider) => rental._id === selectedShop)
       ?.cost || 0;
@@ -67,14 +67,14 @@ export default function ReservationForm({
 
   useEffect(() => {
     let total = currentCostPerDay * daySpend;
-    total -= discount*10;
-    if(promotype === "simple"){
+    total -= discount * 10;
+    if (promotype === "simple") {
       total -= promovalue;
-    }else if(promotype === "percent"){
-      total *= (100-promovalue)/100;
+    } else if (promotype === "percent") {
+      total *= (100 - promovalue) / 100;
     }
     settotalcouse(total);
-  }, [discount,promovalue,promotype,selectedShop,daySpend]);
+  }, [discount, promovalue, promotype, selectedShop, daySpend]);
 
   const maxDiscount = Math.ceil(
     Math.min(newUser.data.point, (currentCostPerDay * daySpend) / 10)
@@ -88,7 +88,7 @@ export default function ReservationForm({
     setpromovalue(0);
   };
 
-  const findPromo = async ()=>{
+  const findPromo = async () => {
     return await getRental(selectedShop);
   };
 
@@ -99,7 +99,7 @@ export default function ReservationForm({
     //     text: "Maximum 3 bookings per user",
     //   });
     //   console.log("Maximum 3 bookings per user");
-    // } else 
+    // } else
     if (
       bookDate != null &&
       selectedCar.model != "" &&
@@ -159,7 +159,9 @@ export default function ReservationForm({
     }
   };
 
-  const [resultChildren, setResultChildren] = useState<Array<OperationResult>>([]);
+  const [resultChildren, setResultChildren] = useState<Array<OperationResult>>(
+    []
+  );
 
   return (
     <>
@@ -313,7 +315,6 @@ export default function ReservationForm({
                     onDateChange={(value: Dayjs) => setBookDate(value)}
                   />
                 </span>
-
               </div>
               <div className="flex flex-col gap-y-2">
                 <label
@@ -342,16 +343,15 @@ export default function ReservationForm({
                   Rental Provider
                 </label>
 
-        <span data-cy="shopSelect">
-                <ShopSelect
-                  shops={shops}
-                  onShopChange={(value: string) => {
-                    setSelectedShop(value)
-                    setpromotype(null);
-                  }}
-                />
-        </span>
-                
+                <span data-cy="shopSelect">
+                  <ShopSelect
+                    shops={shops}
+                    onShopChange={(value: string) => {
+                      setSelectedShop(value);
+                      setpromotype(null);
+                    }}
+                  />
+                </span>
               </div>
               <div className="flex flex-col gap-y-2">
                 <div className="flex justify-between">
@@ -387,14 +387,14 @@ export default function ReservationForm({
                 />
               </div>
               {selectedShop === "None" ? null : (
-                  <div className="flex flex-col gap-y-2">
-                    <label
-                      className="font-semibold text-xs font-sans text-[#FA4EAB] text-left w-full"
-                      htmlFor="input1"
-                    >
-                      Promotion
-                    </label>
-                    {/* <Input
+                <div className="flex flex-col gap-y-2">
+                  <label
+                    className="font-semibold text-xs font-sans text-[#FA4EAB] text-left w-full"
+                    htmlFor="input1"
+                  >
+                    Promotion
+                  </label>
+                  {/* <Input
                   value={discount}
                   min={0}
                   max={maxDiscount}
@@ -412,19 +412,18 @@ export default function ReservationForm({
                     setDiscount(parseInt(e.target.value));
                   }}
                 /> */}
-                    <PromotionSelect
-                      shops={shops}
-                      id={selectedShop}
-                      forPomoDo={(value: string) => {
-                        const [a,b] = value.split(" "); 
-                        console.log(a + " " + b);
-                        setpromovalue(parseInt(a));
-                        setpromotype(b);
-                      }}
-                      // setPromoDo(value);
-                    />
-                  </div>
-                  
+                  <PromotionSelect
+                    shops={shops}
+                    id={selectedShop}
+                    forPomoDo={(value: string) => {
+                      const [a, b] = value.split(" ");
+                      console.log(a + " " + b);
+                      setpromovalue(parseInt(a));
+                      setpromotype(b);
+                    }}
+                    // setPromoDo(value);
+                  />
+                </div>
               )}
             </div>
             <div className="flex flex-col gap-y-4">
@@ -442,18 +441,17 @@ export default function ReservationForm({
                   <div className="flex items-center gap-x-2">
                     <span
                       className={`text-xl ${
-                        (discount > 0 || promotype) ? "line-through" : ""
+                        discount > 0 || promotype ? "line-through" : ""
                       } text-gray-500`}
                     >
-                      $ {(currentCostPerDay * daySpend ).toLocaleString()}
+                      $ {(currentCostPerDay * daySpend).toLocaleString()}
                     </span>
                     {(discount > 0 || promotype) && (
                       <span
                         className="text-[#FA4EAB] text-xl font-bold"
                         data-cy="decreasedCost"
                       >
-                        $
-                        {totalcouse}
+                        ${totalcouse}
                       </span>
                     )}
                   </div>
@@ -466,9 +464,11 @@ export default function ReservationForm({
                 <li className="font-sans text-left text-sm text-[#FA4EAB]">
                   Promotion discount &nbsp;
                   <span className="font-bold">
-                  {promotype && (promotype === "percent" ? promovalue + "%" : "$" + promovalue)}
+                    {promotype &&
+                      (promotype === "percent"
+                        ? promovalue + "%"
+                        : "$" + promovalue)}
                   </span>
-                  
                 </li>
               </div>
               <div className="flex flex-row w-full justify-between">
@@ -500,24 +500,25 @@ export default function ReservationForm({
             <div className="flex flex-row justify-around mb-4">
               <button
                 onClick={clearData}
-                className=" bg-white text-black rounded-lg shadow-xl py-2 px-4 font-sans text-3xl"
+                className="btn btn-lg bg-white min-h-[3.5rem] h-[3.5rem]"
               >
                 Cancel
               </button>
               <button
                 onClick={submitReservation}
-                className="bg-[#FA4EAB] rounded-lg shadow-xl py-2 px-4 font-sans text-3xl text-white"
+                className="btn btn-lg bg-[#FA4EAB] text-white min-h-[3.5rem] h-[3.5rem]"
               >
                 Rent
               </button>
             </div>
           </div>
           <div className="h-screen w-1/2 flex flex-col items-end fixed right-0 top-0 mt-[100px] pointer-events-none">
-            {
-              resultChildren.map((obj) => (
-                <OperationResult obj={obj} heading={obj.props.valid ? "Success:" : "Reservation Failed:"}/>
-              ))
-            }
+            {resultChildren.map((obj) => (
+              <OperationResult
+                obj={obj}
+                heading={obj.props.valid ? "Success:" : "Reservation Failed:"}
+              />
+            ))}
           </div>
         </div>
       ) : (
