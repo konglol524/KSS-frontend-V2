@@ -65,9 +65,9 @@ export default function Profile(  {pfp, session , point}: {pfp:string, session:a
           <div className="w-auto h-full absolute flex items-center p-2 z-30 pointer-events-none">
             {
               (point>=500 && point < 1000) ? 
-              <div className="w-[230px] h-[230px] bg-[url('/img/ariF1.png')] bg-cover"/>
+              <div className="w-[300px] h-[300px] bg-[url('/img/ariF1.png')] bg-cover"/>
               :
-              point >= 1000 ? <div className="w-[230px] h-[230px] bg-[url('/img/ariF2.png')] bg-cover"/> : null
+              point >= 1000 ? <div className="w-[300px] h-[300px] bg-[url('/img/ariF2.png')] bg-cover"/> : null
             }
           </div>
           <div className="absolute w-full h-full flex justify-center items-center">
