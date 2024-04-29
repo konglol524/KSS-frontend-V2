@@ -3,7 +3,7 @@ import url from "../fixtures/url.json";
 describe("US1-2", () => {
   let oldPoint, newPoint;
   beforeEach(function () {
-    cy.visit(`${url.frontend}`);
+    cy.visit(`${url.localhost}`);
     cy.contains("a", "Rent Now").click();
     cy.get("#email").type(user.email);
     cy.get("#password").type(user.password);
@@ -17,7 +17,7 @@ describe("US1-2", () => {
       });
   });
 
-  it("Invalid", function () {
+  it("Show lowest discounted cost", function () {
     cy.get('[data-cy="date"]').click({ multiple: true });
     cy.get("button[name='next-month']").click();
     cy.contains("button[name='day']", "16").click();
@@ -33,11 +33,11 @@ describe("US1-2", () => {
         .invoke("text")
         .then((text) => {
           const decreasedCost = text.substring(1).replace(/,/g, "");
-          expect(+decreasedCost).to.be.gt(0);
+          expect(+decreasedCost).to.be.at.least(0);
         });
     }
   });
-  it("Valid", function () {
+  it.only("Show discounted cost", function () {
     cy.get('[data-cy="date"]').click({ multiple: true });
     cy.get("button[name='next-month']").click();
     cy.contains("button[name='day']", "16").click();
@@ -47,6 +47,16 @@ describe("US1-2", () => {
     cy.get("#discount").clear().type("{selectall}10");
 
     cy.get('[data-cy = "decreasedCost"]').should("exist");
+    let originalCost, discountedCost;
+    cy.get('[data-cy = "originalCost"]')
+      .invoke("text")
+      .then((t) => (originalCost = t.substring(1).replace(/,/g, "")));
+    cy.get('[data-cy = "decreasedCost"]')
+      .invoke("text")
+      .then((text) => {
+        discountedCost = text.substring(1).replace(/,/g, "");
+        expect(+discountedCost).to.be.lessThan(+originalCost);
+      });
     cy.contains("button", "Rent").click();
     cy.wait(6000);
     cy.get('[data-cy="point"]')

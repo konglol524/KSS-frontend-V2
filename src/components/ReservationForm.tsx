@@ -440,6 +440,7 @@ export default function ReservationForm({
                   <p className="font-sans text-2xl text-[#060606]">Total</p>
                   <div className="flex items-center gap-x-2">
                     <span
+                      data-cy="originalCost"
                       className={`text-xl ${
                         discount > 0 || promotype ? "line-through" : ""
                       } text-gray-500`}

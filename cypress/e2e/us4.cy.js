@@ -4,7 +4,7 @@ import userGold from "../fixtures/userGold.json";
 import userNone from "../fixtures/userNone.json";
 describe("US1-4", () => {
   beforeEach(function () {
-    cy.visit(`${url.localhost}`);
+    cy.visit(`${url.frontend}`);
     cy.contains("a", "Rent Now").click();
   });
   it("Platinum Frame in Profile", () => {
@@ -33,7 +33,7 @@ describe("US1-4", () => {
       expect(+p.text()).to.not.be.greaterThan(1000);
     });
   });
-  it.only("No Frame in Profile", () => {
+  it("No Frame in Profile", () => {
     cy.get("#email").type(userNone.email);
     cy.get("#password").type(userNone.password);
     cy.get("#signin").click();
