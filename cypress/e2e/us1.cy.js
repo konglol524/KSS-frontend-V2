@@ -20,7 +20,7 @@ describe("US1-1", () => {
   it("Valid", function () {
     cy.get('[data-cy="date"]').click({ multiple: true });
     cy.get("button[name='next-month']").click();
-    cy.contains("button[name='day']", "1").click();
+    cy.contains("button[name='day']", "15").click();
     cy.get("#discount").clear().type("{selectall}1");
     cy.get('[data-cy="shopSelect"]').click();
     cy.contains("Kong One Shot").click();
@@ -37,7 +37,7 @@ describe("US1-1", () => {
   it("Invalid", function () {
     cy.get('[data-cy="date"]').click({ multiple: true });
     cy.get("button[name='next-month']").click();
-    cy.contains("button[name='day']", "1").click();
+    cy.contains("button[name='day']", "15").click();
     cy.get('[data-cy="daySpend"]').clear().type("{selectall}1");
     cy.get('[data-cy="shopSelect"]').click();
     cy.contains("Kong One Shot").click();
