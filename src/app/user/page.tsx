@@ -1,9 +1,9 @@
-import UserInfo from '@/components/UserInfo';
-import Image from 'next/image';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/libs/auth';
+import UserInfo from "@/components/UserInfo";
+import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/auth";
 import getBookings from "@/libs/getBookings";
-import BookingList from '@/components/BookingList';
+import BookingList from "@/components/BookingList";
 
 export default async function UserPage() {
   const session = await getServerSession(authOptions);
@@ -15,23 +15,19 @@ export default async function UserPage() {
   return (
     <main className="bg-white">
       <div className="w-full h-[70vh] relative">
-          <Image src="/img/sakuraMoutain.jpeg" 
-              alt="background Image" 
-              sizes="100vw" 
-              layout="fill" 
-              objectFit="cover"
-              draggable={false}
-              ></Image>   
-         <UserInfo session={session}/>
+        <Image
+          src="/img/sakuraMoutain.jpeg"
+          alt="background Image"
+          sizes="100vw"
+          layout="fill"
+          objectFit="cover"
+          draggable={false}
+        ></Image>
+        <UserInfo session={session} />
       </div>
-      <div  className="bg-[url('/img/flower3.png')]">
-
-          <BookingList bookings={bookings} token={session?.user.token} />
-          
+      <div className="bg-[url('/img/bookingsbg.png')]">
+        <BookingList bookings={bookings} token={session?.user.token} />
       </div>
-
-
-            
     </main>
   );
 }
