@@ -60,7 +60,7 @@ export default function Faq() {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.pause();
+      audioRef.current.load();
     }
     const audio = audioes.current[sound - 1];
     if (isVolume === "0") {
