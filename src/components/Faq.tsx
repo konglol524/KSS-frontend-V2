@@ -98,9 +98,9 @@ export default function Faq() {
       animate={isOpen ? "open" : "closed"}
       variants={variants}
       transition={{ duration: 0.5 }}
-      className="w-[400px] h-[400px] rounded-lg fixed z-30 bg-bl right-0 bottom-0  flex flex-col items-center bgz"
+      className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] l rounded-lg fixed z-30 bg-bl right-0 bottom-0  flex flex-col items-center bgz"
     >
-      <div className="z-50 flex flex-col h-full justify-between absolute left-[-15%]">
+      <div className="z-50 flex flex-col h-full justify-between absolute left-[-20%] lg:left-[-15%]">
         <div
           className={`flex flex-col gap-y-8 transition duration-500 ${
             isOpen ? "opacity-100" : "opacity-0"
@@ -236,7 +236,7 @@ export default function Faq() {
         setIsFinished={setIsFinished}
         text={text}
         change={change}
-        className="h-[28%] w-4/5 absolute bottom-0 bg-slate-500 border-2 border-white rounded-xl p-2 text-white text-center"
+        className="h-[32%] lg:h-[30%] w-4/5 absolute bottom-0 bg-slate-500 border-2 border-white rounded-xl p-2 text-white text-center text-xs lg:text-base"
       />
       {/* <button
         className="z-40"
