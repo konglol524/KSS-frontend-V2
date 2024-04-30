@@ -27,9 +27,9 @@ export default function Faq() {
 
   let interact: NodeJS.Timeout;
 
-  const audioes: any = [];
+  const audioes = useRef<any>([]);
 
-  if (typeof window !== "undefined") {
+  useEffect(() => {
     const audio1 = new Audio("/sound/d1.wav");
     const audio2 = new Audio("/sound/d2.wav");
     const audio3 = new Audio("/sound/d3.wav");
@@ -39,7 +39,7 @@ export default function Faq() {
     const audio7 = new Audio("/sound/d7.wav");
     const audio8 = new Audio("/sound/d8.wav");
     const audio9 = new Audio("/sound/d9.wav");
-    audioes.push(
+    audioes.current.push(
       audio1,
       audio2,
       audio3,
@@ -50,7 +50,7 @@ export default function Faq() {
       audio8,
       audio9
     );
-  }
+  }, []);
 
   const handleInteraction = () => {
     setInteraction((prevInteraction) =>
@@ -63,7 +63,7 @@ export default function Faq() {
     if (audioRef.current) {
       audioRef.current.pause();
     }
-    const audio = audioes[sound - 1];
+    const audio = audioes.current[sound - 1];
     if (isVolume === "0") {
       audio.volume = 0;
     } else {
