@@ -59,7 +59,6 @@ export default function Faq() {
   };
 
   useEffect(() => {
-    console.log(audioRef.current);
     if (audioRef.current) {
       audioRef.current.pause();
     }
