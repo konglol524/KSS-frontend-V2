@@ -14,6 +14,7 @@ import setOperationResult from "@/libs/setOperationResult";
 import OperationResult from "./OperationResult";
 import getRental from "@/libs/getRental";
 import PromotionSelect from "./PromotionSelect";
+import { motion,MotionConfig } from "framer-motion";
 
 export default function ReservationForm({
   shops,
@@ -167,8 +168,30 @@ export default function ReservationForm({
   return (
     <>
       {selectedCar ? (
-        <div className="grid grid-cols-2 gap-x-4 p-4">
-          <div className="flex justify-center items-center">
+        <div className="grid  grid-cols-2 gap-x-4 p-4">
+          <motion.div 
+          initial={{ 
+            
+            scale: 0,
+            y:0,
+           }}
+          animate={{ 
+            
+            scale: [0,0,0.5,1,1],
+            y:[0,150,-150,-150,0]
+            }}
+          transition={{
+            duration: 1.4,
+            // ease: [0, 0.71, 0.2, 1.01],
+            times:[0,0.5,0.6,0.8,1.4],
+            // scale: {
+            //   type: "spring",
+            //   damping: 5,
+            //   stiffness: 100,
+            //   restDelta: 0.001
+            // }
+          }}
+          className="flex justify-center items-center">
             <Image
               className="w-full rounded-xl"
               src={selectedCar.img}
@@ -177,7 +200,7 @@ export default function ReservationForm({
               height={0}
               sizes="100vw"
             />
-          </div>
+          </motion.div>
           <div className="flex flex-col bg-[#FFF2F9] overflow-y-scroll max-h-[90vh] w-full rounded-2xl p-4 px-6 gap-y-6">
             {/* name + 3icon */}
             <div className="flex gap-x-2">
@@ -236,8 +259,24 @@ export default function ReservationForm({
             </div>
             {/* detail */}
             <div className="grid grid-cols-3 w-full justify-start gap-2">
-              <div className="rounded-md bg-white pl-2 flex flex-col justify-center py-3">
-                <div className="flex">
+              <MotionConfig
+                
+                transition={{
+                  duration:1,
+                  scale: {
+                    type: "spring",
+                    damping: 5,
+                    stiffness: 100,
+                    restDelta: 0.001
+                  }
+                }}
+              >
+              <motion.div 
+              whileHover={{scale:1.2, }}
+              className="rounded-md  bg-white  hover:bg-red-200 pl-2 flex flex-col justify-center py-3">
+                <div 
+
+                className="flex ">
                   <Image
                     src={"/bookingIcon/user.png"}
                     alt={"road"}
@@ -251,8 +290,10 @@ export default function ReservationForm({
                 <p className="flex font-sans font-semibold text-xs mt-1">
                   {selectedCar.Passengers}
                 </p>
-              </div>
-              <div className="rounded-md bg-white pl-2 flex flex-col justify-center py-3">
+              </motion.div>
+              <motion.div 
+              whileHover={{scale:1.2, }}
+              className="rounded-md  hover:bg-red-200 bg-white pl-2 flex flex-col justify-center py-3">
                 <div className="flex">
                   <Image
                     src={"/bookingIcon/caricon.png"}
@@ -267,8 +308,10 @@ export default function ReservationForm({
                 <p className="flex font-sans font-semibold text-xs mt-1">
                   {selectedCar.Type}
                 </p>
-              </div>
-              <div className="rounded-md bg-white pl-2 flex flex-col justify-center py-3">
+              </motion.div>
+              <motion.div
+              whileHover={{scale:1.2, }}
+              className="rounded-md  hover:bg-red-200 bg-white pl-2 flex flex-col justify-center py-3">
                 <div className="flex">
                   <Image
                     src={"/bookingIcon/gas.png"}
@@ -283,8 +326,10 @@ export default function ReservationForm({
                 <p className="flex font-sans font-semibold text-xs mt-1">
                   {selectedCar.Fuel}
                 </p>
-              </div>
-              <div className="rounded-md bg-white pl-2 flex flex-col justify-center py-3">
+              </motion.div>
+              <motion.div 
+              whileHover={{scale:1.2, }}
+              className="rounded-md  hover:bg-red-200 bg-white pl-2 flex flex-col justify-center py-3">
                 <div className="flex">
                   <Image
                     src={"/bookingIcon/gear.png"}
@@ -299,9 +344,12 @@ export default function ReservationForm({
                 <p className="flex font-sans font-semibold text-xs mt-1">
                   {selectedCar.Transmission}
                 </p>
-              </div>
+              </motion.div>
+              </MotionConfig>
             </div>
-            <div className="flex flex-col p-4 rounded-md bg-[#fdfdfb] gap-y-2 ">
+            <motion.div 
+            layout
+            className="flex flex-col p-4 rounded-md bg-[#fdfdfb] gap-y-2 ">
               <div className="flex flex-col gap-y-2">
                 <label
                   className="font-semibold text-xs font-sans text-[#FA4EAB] text-left w-full"
@@ -388,7 +436,17 @@ export default function ReservationForm({
                 />
               </div>
               {selectedShop === "None" ? null : (
-                <div className="flex flex-col gap-y-2">
+                <motion.div
+                initial={{
+                  x: -100
+                }}
+                animate={{
+                  x:0
+                }}
+                transition={{
+                  duration:1.2
+                }}
+                className="flex flex-col gap-y-2">
                   <label
                     className="font-semibold text-xs font-sans text-[#FA4EAB] text-left w-full"
                     htmlFor="input1"
@@ -424,9 +482,9 @@ export default function ReservationForm({
                     }}
                     // setPromoDo(value);
                   />
-                </div>
+                </motion.div>
               )}
-            </div>
+            </motion.div>
             <div className="flex flex-col gap-y-4">
               <div className="flex justify-between items-center">
                 <div className="flex">
@@ -500,18 +558,40 @@ export default function ReservationForm({
             </div>
 
             <div className="flex flex-row justify-around mb-4">
-              <button
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{rotate: "4.5deg", scale: 0.8}}
+                transition={{
+                  duration:1,
+                  scale: {
+                    type: "spring",
+                    damping: 5,
+                    stiffness: 100,
+                    restDelta: 0.001
+                  }
+                }}
                 onClick={clearData}
-                className="btn btn-lg bg-white min-h-[3.5rem] h-[3.5rem]"
+                className="btn btn-lg hover:bg-red-300 hover:text-white bg-white min-h-[3.5rem] h-[3.5rem]"
               >
                 Cancel
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{rotate: "2.5deg", scale: 0.8}}
+                transition={{
+                  duration:1,
+                  scale: {
+                    type: "spring",
+                    damping: 5,
+                    stiffness: 100,
+                    restDelta: 0.001
+                  }
+                }}
                 onClick={submitReservation}
-                className="btn btn-lg bg-[#FA4EAB] text-white min-h-[3.5rem] h-[3.5rem]"
+                className="btn btn-lg bg-[#FA4EAB] hover:bg-red-300  text-white min-h-[3.5rem] h-[3.5rem]"
               >
                 Rent
-              </button>
+              </motion.button>
             </div>
           </div>
           <div className="h-screen w-1/2 flex flex-col items-end fixed right-0 top-0 mt-[100px] pointer-events-none">
