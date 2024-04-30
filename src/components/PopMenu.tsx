@@ -13,7 +13,7 @@ const PopMenu = ({
   setDuration,
 }: {
   icon: string;
-  content: Array<{ content: string; text: string; sFile: string; dur: number }>;
+  content: Array<{ content: string; text: string; sFile: number; dur: number }>;
   header: string;
   setText: Function;
   setChange: Function;
