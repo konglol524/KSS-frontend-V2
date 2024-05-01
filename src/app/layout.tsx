@@ -24,6 +24,7 @@ export default async function RootLayout({
           <TopMenu />
           <div className="h-[65px]"></div>
           {children}
+          <Faq />
         </NextAuthProvider>
       </body>
     </html>
